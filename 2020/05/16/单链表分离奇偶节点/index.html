@@ -469,54 +469,53 @@
 <p>函数<code>getodd</code>将单链表<code>L</code>中奇数值的结点分离出来，重新组成一个新的链表。返回指向新链表头指针，同时将<code>L</code>改为删除了奇数值结点后的链表的头指针</p>
 </blockquote>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>函数<code>readlist</code>不必说，就是一层循环，判断输入是否为<code>-1</code>,返回头指针。<br><br>函数<code>getodd</code>首先创建奇链表的头指针<code>jList</code>，遍历创建好的链表，遇到奇数节点，利用尾插法将奇数节点链接在<code>jList</code>上，偶数节点时，创建一个临时指针保存当前节点（遇到奇数节点时，临时指针就是当前节点的前序节点，原链表可以跨过此节点）。</p>
-<h2 id="cpp代码"><a href="#cpp代码" class="headerlink" title="cpp代码"></a>cpp代码</h2><pre><code class="c"><span class="function">struct ListNode *<span class="title">creatNode</span><span class="params">(<span class="keyword">int</span> x)</span></span>{
-    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">p</span> = (<span class="title">struct</span> <span class="title">ListNode</span> *)<span class="title">malloc</span>(<span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">ListNode</span>));</span>
+<h2 id="cpp代码"><a href="#cpp代码" class="headerlink" title="cpp代码"></a>cpp代码</h2><pre><code>struct ListNode *creatNode(int x){
+    struct ListNode *p = (struct ListNode *)malloc(sizeof(struct ListNode));
     p-&gt;data = x;
-    p-&gt;next = <span class="literal">NULL</span>;
-    <span class="keyword">return</span> p;
+    p-&gt;next = NULL;
+    return p;
 }
 
-<span class="function">struct ListNode *<span class="title">readlist</span><span class="params">()</span></span>{
-    <span class="keyword">int</span> x;
-    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;x);
-    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">head</span> = <span class="title">creatNode</span>(<span class="title">x</span>);</span>
-    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">pre</span> = <span class="title">head</span>;</span>
-    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;x);
-    <span class="keyword">while</span>(x != <span class="number">-1</span>){
-        <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">p</span> = <span class="title">creatNode</span>(<span class="title">x</span>);</span>
+struct ListNode *readlist(){
+    int x;
+    scanf(&quot;%d&quot;, &amp;x);
+    struct ListNode *head = creatNode(x);
+    struct ListNode *pre = head;
+    scanf(&quot;%d&quot;, &amp;x);
+    while(x != -1){
+        struct ListNode *p = creatNode(x);
         pre-&gt;next = p;
         pre = p;
-        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;x);
+        scanf(&quot;%d&quot;, &amp;x);
     }
-    <span class="keyword">return</span> head;
+    return head;
 }
-<span class="function">struct ListNode *<span class="title">getodd</span><span class="params">( struct ListNode **L )</span></span>{
-    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">jList</span> = (<span class="title">struct</span> <span class="title">ListNode</span> *)<span class="title">malloc</span>(<span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">ListNode</span>));</span>
-    jList-&gt;next = <span class="literal">NULL</span>;
-    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">jpre</span> = <span class="title">jList</span>;</span>
-    <span class="keyword">while</span>(*L &amp;&amp; (*L)-&gt;data % <span class="number">2</span> == <span class="number">1</span>){
+struct ListNode *getodd( struct ListNode **L ){
+    struct ListNode *jList = (struct ListNode *)malloc(sizeof(struct ListNode));
+    jList-&gt;next = NULL;
+    struct ListNode *jpre = jList;
+    while(*L &amp;&amp; (*L)-&gt;data % 2 == 1){
         jpre-&gt;next = *L;
         jpre = jpre-&gt;next;
         *L = (*L)-&gt;next;
     }
-    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">oList</span> = *<span class="title">L</span>;</span>
-    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">opre</span> = <span class="title">oList</span>;</span>
-    <span class="keyword">while</span> (oList) {
-        <span class="keyword">if</span> (oList-&gt;data % <span class="number">2</span> == <span class="number">1</span>) {
+    struct ListNode *oList = *L;
+    struct ListNode *opre = oList;
+    while (oList) {
+        if (oList-&gt;data % 2 == 1) {
             jpre-&gt;next = oList;
             jpre = jpre-&gt;next;
             opre-&gt;next = oList-&gt;next;
             oList = oList-&gt;next;
         }
-        <span class="keyword">else</span> {
+        else {
             opre = oList;
             oList = oList-&gt;next;
         }
     }
-    jpre-&gt;next = <span class="literal">NULL</span>;
-    <span class="keyword">return</span> jList-&gt;next;
+    jpre-&gt;next = NULL;
+    return jList-&gt;next;
 }</code></pre>
-
             </div>
             <hr/>
 
