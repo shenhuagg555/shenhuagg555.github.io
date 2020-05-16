@@ -3,7 +3,7 @@
 
 
 <head>
-    <meta charset="utf-8">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <meta name="keywords" content="单链表分离奇偶节点, C/C++，Python，Java等">
     <meta name="description" content="博主很懒，什么都没有留下">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,11 +29,11 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
     <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 <body>
-    <header class="navbar-fixed">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
         <div id="navContainer" class="nav-wrapper container">
             <div class="brand-logo">
@@ -511,58 +511,13 @@
             <div id="articleContent">
                 <h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><blockquote>
 <p>函数<code>readlist</code>从标准输入读入一系列正整数，按照读入顺序建立单链表。当读到<code>−1</code>时表示输入结束，函数应返回指向单链表头结点的指针。</p>
-</blockquote>
-<blockquote>
 <p>函数<code>getodd</code>将单链表<code>L</code>中奇数值的结点分离出来，重新组成一个新的链表。返回指向新链表头指针，同时将<code>L</code>改为删除了奇数值结点后的链表的头指针</p>
 </blockquote>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>函数<code>readlist</code>不必说，就是一层循环，判断输入是否为<code>-1</code>,返回头指针。<br><br>函数<code>getodd</code>首先创建奇链表的头指针<code>jList</code>，遍历创建好的链表，遇到奇数节点，利用尾插法将奇数节点链接在<code>jList</code>上，偶数节点时，创建一个临时指针保存当前节点（遇到奇数节点时，临时指针就是当前节点的前序节点，原链表可以跨过此节点）。</p>
-<h2 id="cpp代码"><a href="#cpp代码" class="headerlink" title="cpp代码"></a>cpp代码</h2><pre><code>struct ListNode *creatNode(int x){
-    struct ListNode *p = (struct ListNode *)malloc(sizeof(struct ListNode));
-    p-&gt;data = x;
-    p-&gt;next = NULL;
-    return p;
-}
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>函数<code>readlist</code>不必说，就是一层循环，判断输入是否为<code>-1</code>,返回头指针。\<br>\<br>函数<code>getodd</code>首先创建奇链表的头指针<code>jList</code>，遍历创建好的链表，遇到奇数节点，利用尾插法将奇数节点链接在<code>jList</code>上，偶数节点时，创建一个临时指针保存当前节点（遇到奇数节点时，临时指针就是当前节点的前序节点，原链表可以跨过此节点）。</p>
+<h2 id="cpp代码"><a href="#cpp代码" class="headerlink" title="cpp代码"></a>cpp代码</h2><p>```<br>struct ListNode <em>creatNode(int x){<br>    struct ListNode </em>p = (struct ListNode *)malloc(sizeof(struct ListNode));<br>    p-&gt;data = x;<br>    p-&gt;next = NULL;<br>    return p;<br>}</p>
+<p>struct ListNode <em>readlist(){<br>    int x;<br>    scanf(“%d”, &amp;x);<br>    struct ListNode </em>head = creatNode(x);<br>    struct ListNode <em>pre = head;<br>    scanf(“%d”, &amp;x);<br>    while(x != -1){<br>        struct ListNode </em>p = creatNode(x);<br>        pre-&gt;next = p;<br>        pre = p;<br>        scanf(“%d”, &amp;x);<br>    }<br>    return head;<br>}<br>struct ListNode <em>getodd( struct ListNode **L ){<br>    struct ListNode </em>jList = (struct ListNode <em>)malloc(sizeof(struct ListNode));<br>    jList-&gt;next = NULL;<br>    struct ListNode </em>jpre = jList;<br>    while(<em>L &amp;&amp; (</em>L)-&gt;data % 2 == 1){<br>        jpre-&gt;next = <em>L;<br>        jpre = jpre-&gt;next;
+        </em>L = (<em>L)-&gt;next;<br>    }<br>    struct ListNode </em>oList = <em>L;<br>    struct ListNode </em>opre = oList;<br>    while (oList) {<br>        if (oList-&gt;data % 2 == 1) {<br>            jpre-&gt;next = oList;<br>            jpre = jpre-&gt;next;<br>            opre-&gt;next = oList-&gt;next;<br>            oList = oList-&gt;next;<br>        }<br>        else {<br>            opre = oList;<br>            oList = oList-&gt;next;<br>        }<br>    }<br>    jpre-&gt;next = NULL;<br>    return jList-&gt;next;<br>}</p>
 
-struct ListNode *readlist(){
-    int x;
-    scanf(&quot;%d&quot;, &amp;x);
-    struct ListNode *head = creatNode(x);
-    struct ListNode *pre = head;
-    scanf(&quot;%d&quot;, &amp;x);
-    while(x != -1){
-        struct ListNode *p = creatNode(x);
-        pre-&gt;next = p;
-        pre = p;
-        scanf(&quot;%d&quot;, &amp;x);
-    }
-    return head;
-}
-struct ListNode *getodd( struct ListNode **L ){
-    struct ListNode *jList = (struct ListNode *)malloc(sizeof(struct ListNode));
-    jList-&gt;next = NULL;
-    struct ListNode *jpre = jList;
-    while(*L &amp;&amp; (*L)-&gt;data % 2 == 1){
-        jpre-&gt;next = *L;
-        jpre = jpre-&gt;next;
-        *L = (*L)-&gt;next;
-    }
-    struct ListNode *oList = *L;
-    struct ListNode *opre = oList;
-    while (oList) {
-        if (oList-&gt;data % 2 == 1) {
-            jpre-&gt;next = oList;
-            jpre = jpre-&gt;next;
-            opre-&gt;next = oList-&gt;next;
-            oList = oList-&gt;next;
-        }
-        else {
-            opre = oList;
-            oList = oList-&gt;next;
-        }
-    }
-    jpre-&gt;next = NULL;
-    return jList-&gt;next;
-}</code></pre>
             </div>
             <hr/>
 
@@ -811,7 +766,8 @@ struct ListNode *getodd( struct ListNode **L ){
                     <div class="summary block-with-text">
                         
                             变换定义
-&emsp;$f\left( x \right)$在$t\ge 0$有定义，且积分$$\int_0^{+\infty}{f\left( t \right) e^{-st}}dt\ \ \left( s\text{为复数} \rig
+&emsp;$f\left( x \right)$在$t\ge 0$有定义，且积分
+\int_0^{+\infty}{f\left( t \right) e^{-st}}dt\ \ \left( s\text{为复数} \righ
                         
                     </div>
                     <div class="publish-info">
@@ -1220,7 +1176,24 @@ $(function () {
 
     <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
     <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-    <script type="text/javascript" src="/js/fireworks.js"></script>
+    <script type="text/javascript" src="/js/fireworks.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 </body>
