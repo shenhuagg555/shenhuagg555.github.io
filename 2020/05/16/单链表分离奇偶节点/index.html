@@ -517,55 +517,53 @@
 <p>函数<code>readlist</code>不必说，就是一层循环，判断输入是否为<code>-1</code>,返回头指针。</p>
 <p>函数<code>getodd</code>首先创建奇链表的头指针<code>jList</code>，遍历创建好的链表，遇到奇数节点，利用尾插法将奇数节点链接在<code>jList</code>上，偶数节点时，创建一个临时指针保存当前节点（遇到奇数节点时，临时指针就是当前节点的前序节点，原链表可以跨过此节点）。</p>
 </blockquote>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre class=" language-lang-cpp"><code class="language-lang-cpp">struct ListNode *creatNode(int x){
-    struct ListNode *p = (struct ListNode *)malloc(sizeof(struct ListNode));
-    p->data = x;
-    p->next = NULL;
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>struct ListNode *creatNode(int x){
+    struct ListNode *p &#x3D; (struct ListNode *)malloc(sizeof(struct ListNode));
+    p-&gt;data &#x3D; x;
+    p-&gt;next &#x3D; NULL;
     return p;
 }
 
 struct ListNode *readlist(){
     int x;
-    scanf("%d", &x);
-    struct ListNode *head = creatNode(x);
-    struct ListNode *pre = head;
-    scanf("%d", &x);
-    while(x != -1){
-        struct ListNode *p = creatNode(x);
-        pre->next = p;
-        pre = p;
-        scanf("%d", &x);
+    scanf(&quot;%d&quot;, &amp;x);
+    struct ListNode *head &#x3D; creatNode(x);
+    struct ListNode *pre &#x3D; head;
+    scanf(&quot;%d&quot;, &amp;x);
+    while(x !&#x3D; -1){
+        struct ListNode *p &#x3D; creatNode(x);
+        pre-&gt;next &#x3D; p;
+        pre &#x3D; p;
+        scanf(&quot;%d&quot;, &amp;x);
     }
     return head;
 }
 struct ListNode *getodd( struct ListNode **L ){
-    struct ListNode *jList = (struct ListNode *)malloc(sizeof(struct ListNode));
-    jList->next = NULL;
-    struct ListNode *jpre = jList;
-    while(*L && (*L)->data % 2 == 1){
-        jpre->next = *L;
-        jpre = jpre->next;
-        *L = (*L)->next;
+    struct ListNode *jList &#x3D; (struct ListNode *)malloc(sizeof(struct ListNode));
+    jList-&gt;next &#x3D; NULL;
+    struct ListNode *jpre &#x3D; jList;
+    while(*L &amp;&amp; (*L)-&gt;data % 2 &#x3D;&#x3D; 1){
+        jpre-&gt;next &#x3D; *L;
+        jpre &#x3D; jpre-&gt;next;
+        *L &#x3D; (*L)-&gt;next;
     }
-    struct ListNode *oList = *L;
-    struct ListNode *opre = oList;
+    struct ListNode *oList &#x3D; *L;
+    struct ListNode *opre &#x3D; oList;
     while (oList) {
-        if (oList->data % 2 == 1) {
-            jpre->next = oList;
-            jpre = jpre->next;
-            opre->next = oList->next;
-            oList = oList->next;
+        if (oList-&gt;data % 2 &#x3D;&#x3D; 1) {
+            jpre-&gt;next &#x3D; oList;
+            jpre &#x3D; jpre-&gt;next;
+            opre-&gt;next &#x3D; oList-&gt;next;
+            oList &#x3D; oList-&gt;next;
         }
         else {
-            opre = oList;
-            oList = oList->next;
+            opre &#x3D; oList;
+            oList &#x3D; oList-&gt;next;
         }
     }
-    jpre->next = NULL;
-    return jList->next;
-}
-</code></pre>
-
+    jpre-&gt;next &#x3D; NULL;
+    return jList-&gt;next;
+}</code></pre>
             </div>
             <hr/>
 
