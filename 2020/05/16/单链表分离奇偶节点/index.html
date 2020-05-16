@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
     <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 <body>
@@ -517,7 +517,55 @@
 <p>函数<code>readlist</code>不必说，就是一层循环，判断输入是否为<code>-1</code>,返回头指针。</p>
 <p>函数<code>getodd</code>首先创建奇链表的头指针<code>jList</code>，遍历创建好的链表，遇到奇数节点，利用尾插法将奇数节点链接在<code>jList</code>上，偶数节点时，创建一个临时指针保存当前节点（遇到奇数节点时，临时指针就是当前节点的前序节点，原链表可以跨过此节点）。</p>
 </blockquote>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">struct ListNode *<span class="hljs-title">creatNode</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span>&#123;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ListNode</span> *<span class="hljs-title">p</span> = (<span class="hljs-title">struct</span> <span class="hljs-title">ListNode</span> *)<span class="hljs-title">malloc</span>(<span class="hljs-title">sizeof</span>(<span class="hljs-title">struct</span> <span class="hljs-title">ListNode</span>));</span><br>    p-&gt;data = x;<br>    p-&gt;next = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-keyword">return</span> p;<br>&#125;<br><br><span class="hljs-function">struct ListNode *<span class="hljs-title">readlist</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">int</span> x;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;x);<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ListNode</span> *<span class="hljs-title">head</span> = <span class="hljs-title">creatNode</span>(<span class="hljs-title">x</span>);</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ListNode</span> *<span class="hljs-title">pre</span> = <span class="hljs-title">head</span>;</span><br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;x);<br>    <span class="hljs-keyword">while</span>(x != <span class="hljs-number">-1</span>)&#123;<br>        <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ListNode</span> *<span class="hljs-title">p</span> = <span class="hljs-title">creatNode</span>(<span class="hljs-title">x</span>);</span><br>        pre-&gt;next = p;<br>        pre = p;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>, &amp;x);<br>    &#125;<br>    <span class="hljs-keyword">return</span> head;<br>&#125;<br><span class="hljs-function">struct ListNode *<span class="hljs-title">getodd</span><span class="hljs-params">( struct ListNode **L )</span></span>&#123;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ListNode</span> *<span class="hljs-title">jList</span> = (<span class="hljs-title">struct</span> <span class="hljs-title">ListNode</span> *)<span class="hljs-title">malloc</span>(<span class="hljs-title">sizeof</span>(<span class="hljs-title">struct</span> <span class="hljs-title">ListNode</span>));</span><br>    jList-&gt;next = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ListNode</span> *<span class="hljs-title">jpre</span> = <span class="hljs-title">jList</span>;</span><br>    <span class="hljs-keyword">while</span>(*L &amp;&amp; (*L)-&gt;data % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>)&#123;<br>        jpre-&gt;next = *L;<br>        jpre = jpre-&gt;next;<br>        *L = (*L)-&gt;next;<br>    &#125;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ListNode</span> *<span class="hljs-title">oList</span> = *<span class="hljs-title">L</span>;</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ListNode</span> *<span class="hljs-title">opre</span> = <span class="hljs-title">oList</span>;</span><br>    <span class="hljs-keyword">while</span> (oList) &#123;<br>        <span class="hljs-keyword">if</span> (oList-&gt;data % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>) &#123;<br>            jpre-&gt;next = oList;<br>            jpre = jpre-&gt;next;<br>            opre-&gt;next = oList-&gt;next;<br>            oList = oList-&gt;next;<br>        &#125;<br>        <span class="hljs-keyword">else</span> &#123;<br>            opre = oList;<br>            oList = oList-&gt;next;<br>        &#125;<br>    &#125;<br>    jpre-&gt;next = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-keyword">return</span> jList-&gt;next;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre class=" language-lang-cpp"><code class="language-lang-cpp">struct ListNode *creatNode(int x){
+    struct ListNode *p = (struct ListNode *)malloc(sizeof(struct ListNode));
+    p->data = x;
+    p->next = NULL;
+    return p;
+}
+
+struct ListNode *readlist(){
+    int x;
+    scanf("%d", &x);
+    struct ListNode *head = creatNode(x);
+    struct ListNode *pre = head;
+    scanf("%d", &x);
+    while(x != -1){
+        struct ListNode *p = creatNode(x);
+        pre->next = p;
+        pre = p;
+        scanf("%d", &x);
+    }
+    return head;
+}
+struct ListNode *getodd( struct ListNode **L ){
+    struct ListNode *jList = (struct ListNode *)malloc(sizeof(struct ListNode));
+    jList->next = NULL;
+    struct ListNode *jpre = jList;
+    while(*L && (*L)->data % 2 == 1){
+        jpre->next = *L;
+        jpre = jpre->next;
+        *L = (*L)->next;
+    }
+    struct ListNode *oList = *L;
+    struct ListNode *opre = oList;
+    while (oList) {
+        if (oList->data % 2 == 1) {
+            jpre->next = oList;
+            jpre = jpre->next;
+            opre->next = oList->next;
+            oList = oList->next;
+        }
+        else {
+            opre = oList;
+            oList = oList->next;
+        }
+    }
+    jpre->next = NULL;
+    return jList->next;
+}
+</code></pre>
+
             </div>
             <hr/>
 
