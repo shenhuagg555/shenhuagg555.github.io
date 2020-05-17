@@ -509,7 +509,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="变换定义"><a href="#变换定义" class="headerlink" title="变换定义"></a>变换定义</h2><blockquote>
+                <h2 id="Laplace变换定义"><a href="#Laplace变换定义" class="headerlink" title="Laplace变换定义"></a>Laplace变换定义</h2><blockquote>
 <p>$f\left( x \right)$在$t\ge 0$有定义，且积分</p>
 <script type="math/tex; mode=display">\int_0^{+\infty}{f\left( t \right) e^{-st}}dt\ \ \left( s\text{为复数} \right)</script><p>在s的某一区域内收敛，则称</p>
 <script type="math/tex; mode=display">F\left( s \right) =\int_0^{+\infty}{f\left( t \right) e^{-st}}dt</script><p>为$f\left( t \right)$的Laplace变换式，记为$F\left( s \right) =\mathscr{L}\left[ f\left( t \right) \right]$</p>
@@ -532,8 +532,9 @@
 <p>定理1（留数):<br>$s_i\left( i=1,2,,,n \right)$是函数$F\left( s \right)$的所有奇点,且当$s\rightarrow \infty$时$,F\left( s \right) \rightarrow 0$,则有</p>
 <script type="math/tex; mode=display">f\left( t \right) =\sum_{k=1}^n{\text{Re}s\left[ F\left( s \right) e^{st},s_k \right]}\ \ \ t>0</script><p>定理2（卷积):<br>若函数$f_1\left( t \right)$和$f_2\left( t \right)$满足Laplace变换存在定理中的条件,且$\mathscr{L}\left[ f_1\left( t \right) \right] =F_1\left( s \right) \mathscr{L}\left[ f_2\left( t \right) \right] =F_2\left( s \right)$ ,则$f_1\left( t \right) \ast f_2\left( t \right)&gt;$的Laplce变换一定存在，则</p>
 <script type="math/tex; mode=display">\mathscr{L}\left[ f_1\left( t \right) \ast f_2\left( t \right) \right] =\mathscr{L}\left[ f_1\left( t \right) \right] \cdot \mathscr{L}\left[ f_2\left( t \right) \right] =F_1\left( s \right) \cdot F_2\left( s \right)</script><p>这个性质表明两个函数卷积的Laplace变换等于这两个函数Laplace变换乘积</p>
-<p>卷积定义：<br>设有两个函数**$f_1\left( t \right) ,f_2\left( t \right)$ ,称积分</p>
-<script type="math/tex; mode=display">f_1\left( t \right) \ast f_2\left( t \right) =\int_{-\infty}^{+\infty}{f_1\left( \tau \right) f_2\left( t-\tau \right)}d\tau</script><p>为函数$f_1\left( x \right) ,f_2\left( x \right)$的卷积<br>若函数$f_1\left( t \right) ,f_2\left( t \right)$满足：当$t&lt;0$时，$f_1\left( t \right) =f_2\left( t \right) =0$,则有</p>
+<p>卷积定义：<br>设有两个函数$f_1\left( t \right) ,f_2\left( t \right)$ ,称积分</p>
+<script type="math/tex; mode=display">f_1\left( t \right) \ast f_2\left( t \right) =\int_{-\infty}^{+\infty}{f_1\left( \tau \right) f_2\left( t-\tau \right)}d\tau</script><p>为函数$f_1\left( x \right) ,f_2\left( x \right)$的卷积</p>
+<p>若函数$f_1\left( t \right) ,f_2\left( t \right)$满足：当$t&lt;0$时，$f_1\left( t \right) =f_2\left( t \right) =0$,则有</p>
 <script type="math/tex; mode=display">f_1\left( t \right) \ast f_2\left( t \right) =\int_0^t{f_1\left( \tau \right) f_2\left( t-\tau \right)}d\tau</script></blockquote>
 
             </div>
