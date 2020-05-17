@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="单链表分离奇偶节点, C/C++，Python，Java等">
+    <meta name="keywords" content="最长递增子序列, C/C++，Python，Java等">
     <meta name="description" content="博主很懒，什么都没有留下">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>单链表分离奇偶节点 | Van Basten</title>
+    <title>最长递增子序列 | Van Basten</title>
     <link rel="icon" type="image/png" href="/medias/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -355,12 +355,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">单链表分离奇偶节点</h1>
+                    <h1 class="description center-align post-title">最长递增子序列</h1>
                 </div>
             </div>
         </div>
@@ -493,7 +493,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-16
+                    2020-05-18
                 </div>
                 
 
@@ -509,62 +509,34 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><blockquote>
-<p>函数<code>readlist</code>从标准输入读入一系列正整数，按照读入顺序建立单链表。当读到<code>−1</code>时表示输入结束，函数应返回指向单链表头结点的指针。</p>
-<p>函数<code>getodd</code>将单链表<code>L</code>中奇数值的结点分离出来，重新组成一个新的链表。返回指向新链表头指针，同时将<code>L</code>改为删除了奇数值结点后的链表的头指针</p>
+                <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><blockquote>
+<p>给定一无序整数数组，求其最长递增子序列的长度。<br>例：输入 <code>[10,9,2,5,3,7,101,18]</code> 输出 <code>4</code></p>
 </blockquote>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><blockquote>
-<p>函数<code>readlist</code>不必说，就是一层循环，判断输入是否为<code>-1</code>,返回头指针。</p>
-<p>函数<code>getodd</code>首先创建奇链表的头指针<code>jList</code>，遍历创建好的链表，遇到奇数节点，利用尾插法将奇数节点链接在<code>jList</code>上，偶数节点时，创建一个临时指针保存当前节点（遇到奇数节点时，临时指针就是当前节点的前序节点，原链表可以跨过此节点）。</p>
+<h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><blockquote>
+<p>经典<code>dp</code>问题，我们考虑<code>dp[i]</code>为前<code>i+1</code>个数字最长递增子序列的长度，状态转移方程如下：</p>
+<script type="math/tex; mode=display">dp\left[ i \right] =\max \left\{ dp\left[ i \right] ,\ dp\left[ j \right] +1 \right\} \ \ if\ nums\left[ i \right] \ >\ nums\left[ j \right] \ \left( 0\ \le \ j\ <\ i \right)</script><p>从而算出任意给定数组的最长递增子序列的长度。</p>
 </blockquote>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre class=" language-lang-c"><code class="language-lang-c">struct ListNode *creatNode(int x){
-    struct ListNode *p = (struct ListNode *)malloc(sizeof(struct ListNode));
-    p->data = x;
-    p->next = NULL;
-    return p;
-}
-
-struct ListNode *readlist(){
-    int x;
-    scanf("%d", &x);
-    struct ListNode *head = creatNode(x);
-    struct ListNode *pre = head;
-    scanf("%d", &x);
-    while(x != -1){
-        struct ListNode *p = creatNode(x);
-        pre->next = p;
-        pre = p;
-        scanf("%d", &x);
-    }
-    return head;
-}
-struct ListNode *getodd( struct ListNode **L ){
-    struct ListNode *jList = (struct ListNode *)malloc(sizeof(struct ListNode));
-    jList->next = NULL;
-    struct ListNode *jpre = jList;
-    while(*L && (*L)->data % 2 == 1){
-        jpre->next = *L;
-        jpre = jpre->next;
-        *L = (*L)->next;
-    }
-    struct ListNode *oList = *L;
-    struct ListNode *opre = oList;
-    while (oList) {
-        if (oList->data % 2 == 1) {
-            jpre->next = oList;
-            jpre = jpre->next;
-            opre->next = oList->next;
-            oList = oList->next;
+<h2 id="cpp代码"><a href="#cpp代码" class="headerlink" title="cpp代码"></a>cpp代码</h2><pre class=" language-lang-cpp"><code class="language-lang-cpp">class solution{
+public:
+    int maxLength(vector<int> nums){
+        int dp[nums.size()] = {1};
+        int maxl = 0;
+        for(int i  = 0; i < nums.size(); i++){
+            for(int j = 0; j < i; j++)
+                if(nums[i] > nums[j])
+                    dp[i] = max(dp[i], dp[j]+1);
+            maxl = max(maxl, dp[i]);
         }
-        else {
-            opre = oList;
-            oList = oList->next;
-        }
+        return maxl;
     }
-    jpre->next = NULL;
-    return jList->next;
-}
+};
 </code></pre>
+<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><blockquote>
+<p>时间复杂度 <code>O(n^2)</code><br>空间复杂度 <code>O(n)</code></p>
+</blockquote>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><blockquote>
+<p>常规算法就是<code>dp</code>，但有大神给出了二分查找解法，其时间复杂度仅为<code>O(nlogn)</code>，一般人确实想不到，有机会再聊聊二分查找。</p>
+</blockquote>
 
             </div>
             <hr/>
@@ -590,7 +562,7 @@ struct ListNode *getodd( struct ListNode **L ){
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://shenhuagg555.github.io/ https://shenhuagg555.gitee.io/2020/05/16/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%88%86%E7%A6%BB%E5%A5%87%E5%81%B6%E8%8A%82%E7%82%B9/">https://shenhuagg555.github.io/ https://shenhuagg555.gitee.io/2020/05/16/%E5%8D%95%E9%93%BE%E8%A1%A8%E5%88%86%E7%A6%BB%E5%A5%87%E5%81%B6%E8%8A%82%E7%82%B9/</a>
+                    <a href="https://shenhuagg555.github.io/ https://shenhuagg555.gitee.io/2020/05/18/%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97/">https://shenhuagg555.github.io/ https://shenhuagg555.gitee.io/2020/05/18/%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -797,31 +769,35 @@ struct ListNode *getodd( struct ListNode **L ){
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/05/16/Laplace%E5%8F%98%E6%8D%A2%E5%9F%BA%E7%A1%80/">
+                <a href="/2020/05/18/%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Laplace变换基础">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="最长递增子序列">
                         
-                        <span class="card-title">Laplace变换基础</span>
+                        <span class="card-title">最长递增子序列</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            变换定义
-$f\left( x \right)$在$t\ge 0$有定义，且积分
-\int_0^{+\infty}{f\left( t \right) e^{-st}}dt\ \ \left( s\text{为复数} \right)在s的某
+                            问题描述
+给定一无序整数数组，求其最长递增子序列的长度。例：输入 [10,9,2,5,3,7,101,18] 输出 4
+
+问题分析
+经典dp问题，我们考虑dp[i]为前i+1个数字最长递增子序列的长度，状态转移方程如下：
+dp\left[ 
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-18
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -830,11 +806,12 @@ $f\left( x \right)$在$t\ge 0$有定义，且积分
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Math/">
-                        <span class="chip bg-color">Math</span>
+                    <a href="/tags/Data-structure-and-algorithm/">
+                        <span class="chip bg-color">Data structure and algorithm</span>
                     </a>
                     
                 </div>
@@ -848,24 +825,28 @@ $f\left( x \right)$在$t\ge 0$有定义，且积分
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/16/hello-world/">
+                <a href="/2020/05/17/%E6%97%A0%E9%87%8D%E5%A4%8D%E6%95%B0%E5%AD%97/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="无重复数字">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">无重复数字</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            问题描述
+对于给定数组nums,寻找数组中无重复的数字，假定此数字唯一，且重复数字仅出现两次。例如：给定nums = [1, 2, 3, 1, 2, 3, 4]  ，则  res = 4
+
+问题分析
+此题主要考察异或^的用法，我们知道对于任
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-17
                             </span>
                         <span class="publish-author">
                             
@@ -874,6 +855,14 @@ $f\left( x \right)$在$t\ge 0$有定义，且积分
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Data-structure-and-algorithm/">
+                        <span class="chip bg-color">Data structure and algorithm</span>
+                    </a>
+                    
                 </div>
                 
             </div>

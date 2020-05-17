@@ -509,32 +509,33 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><strong>变换定义</strong></p>
-<p>&emsp;$f\left( x \right)$<strong>在</strong>$t\ge 0$<strong>有定义，且积分</strong></p>
-<script type="math/tex; mode=display">\int_0^{+\infty}{f\left( t \right) e^{-st}}dt\ \ \left( s\text{为复数} \right)</script><p>&emsp;<strong>在s的某一区域内收敛，则称</strong></p>
-<script type="math/tex; mode=display">F\left( s \right) =\int_0^{+\infty}{f\left( t \right) e^{-st}}dt</script><p>&emsp;<strong>为</strong>$f\left( t \right)$<strong>的Laplace变换式，记为</strong>$F\left( s \right) =\mathscr{L}\left[ f\left( t \right) \right]$</p>
-<p><strong>周期函数的Laplace变换</strong></p>
-<p>&emsp;<strong>对于一个以$T$为周期的函数</strong>$f\left( t \right)$ <strong>，当</strong>$f\left( t \right)$<strong>在一个周期上分段连续时，有</strong></p>
-<script type="math/tex; mode=display">\mathscr{L}\left[ f\left( t \right) \right] =\frac{1}{1-e^{-sT}}\int_0^T{f\left( t \right) e^{-st}}dt\ \ \ \ \ \ \text{其中Re}s\left( s \right) >0</script><p><strong>Laplace变换性质</strong></p>
-<p><strong>1.线性性质</strong><script type="math/tex">\mathscr{L}\left[ \alpha f_1\left( t \right) +\beta f_2\left( t \right) \right] =\alpha \mathscr{L}\left[ f_1\left( t \right) \right] +\beta \mathscr{L}\left[ f_2\left( t \right) \right]</script></p>
-<p><strong>2.微分性质</strong><br><strong>（1）象原函数的微分性质</strong><br>&emsp;<strong>设</strong>$\mathscr{L}\left[ f\left( t \right) \right] =F\left( s \right)$</p>
-<script type="math/tex; mode=display">\mathscr{L}\left[ f^{\left( n \right)}\left( t \right) \right] =s^nF\left( s \right) -\sum_{i=0}^{n-1}{s^{n-1-i}f^{\left( i \right)}\left( 0 \right)}\ \ \ \text{Re}s\left( s \right) >c</script><p><strong>（2）象函数的微分性质</strong><br>&emsp;<strong>设</strong>$\mathscr{L}\left[ f\left( t \right) \right] =F\left( s \right)$</p>
-<script type="math/tex; mode=display">F^{\left( n \right)}\left( s \right) =\left( -1 \right) ^n\mathscr{L}\left[ t^nf\left( t \right) \right] \ \ \ \ \text{Re}s\left( s \right) >c</script><p><strong>3.积分性质</strong></p>
-<p><strong>（1）象原函数的积分性质</strong><br>&emsp;<strong>设</strong>$\mathscr{L}\left[ f\left( t \right) \right] =F\left( s \right)$</p>
-<script type="math/tex; mode=display">\mathscr{L}\left[ \int_0^t{f\left( t \right)}dt \right] =\frac{1}{s}F\left( s \right)</script><p><strong>（2）象函数的积分性质</strong><br>&emsp;<strong>设</strong>$\mathscr{L}\left[ f\left( t \right) \right] =F\left( s \right)$</p>
-<script type="math/tex; mode=display">\mathscr{L}\left[ \frac{f\left( t \right)}{t} \right] =\int_s^{+\infty}{F\left( s \right)}ds</script><p>&emsp;<strong>一般地，有</strong></p>
-<script type="math/tex; mode=display">\mathscr{L}\left[ \frac{f\left( t \right)}{t^n} \right] =\underset{n\text{次积分}}{\underbrace{\int_s^{+\infty}{\int_s^{+\infty}{...\int_s^{+\infty}{F\left( s \right)}ds}}}}</script><p><strong>4.位移性质</strong><br>&emsp;<strong>设</strong>$\mathscr{L}\left[ f\left( t \right) \right] =F\left( s \right)$,<strong>则有</strong></p>
-<script type="math/tex; mode=display">\mathscr{L}\left[ e^{at}f\left( t \right) \right] =F\left( s-a \right) \ \</script><p><strong>5.延迟性质</strong><br>&emsp;<strong>设</strong>$\mathscr{L}\left[ f\left( t \right) \right] =F\left( s \right) \text{，}t&lt;0$<strong>时</strong>，$f\left( t \right) =0$<strong>，则对于任意非负实数</strong>$\tau$，<strong>有</strong></p>
-<script type="math/tex; mode=display">\mathscr{L}\left[ f\left( t-\tau \right) \right] =e^{-s\tau}F\left( s \right)</script><p><strong>Laplace逆变换的求法</strong></p>
-<p><strong>定理1（留数):</strong> </p>
-<p>&emsp;$s_i\left( i=1,2,,,n \right)$<strong>是函数</strong>$F\left( s \right)$<strong>的所有奇点,且当</strong>$s\rightarrow \infty$<strong>时</strong>$,F\left( s \right) \rightarrow 0$,<strong>则有</strong></p>
-<script type="math/tex; mode=display">f\left( t \right) =\sum_{k=1}^n{\text{Re}s\left[ F\left( s \right) e^{st},s_k \right]}\ \ \ t>0</script><p><strong>定理2（卷积):</strong></p>
-<p>&emsp;<strong>若函数</strong>$f_1\left( t \right)$<strong>和</strong>$f_2\left( t \right)$<strong>满足Laplace变换存在定理中的条件,且</strong>$\mathscr{L}\left[ f_1\left( t \right) \right] =F_1\left( s \right) \mathscr{L}\left[ f_2\left( t \right) \right] =F_2\left( s \right)$ ,<strong>则</strong>$f_1\left( t \right) \ast f_2\left( t \right)$<strong>的Laplce变换一定存在，则</strong></p>
-<script type="math/tex; mode=display">\mathscr{L}\left[ f_1\left( t \right) \ast f_2\left( t \right) \right] =\mathscr{L}\left[ f_1\left( t \right) \right] \cdot \mathscr{L}\left[ f_2\left( t \right) \right] =F_1\left( s \right) \cdot F_2\left( s \right)</script><p><strong>这个性质表明两个函数卷积的Laplace变换等于这两个函数Laplace变换乘积</strong></p>
-<p><strong>卷积定义：</strong><br>&emsp;<strong>设有两个函数</strong>$f_1\left( t \right) ,f_2\left( t \right)$ ,<strong>称积分</strong></p>
-<script type="math/tex; mode=display">f_1\left( t \right) \ast f_2\left( t \right) =\int_{-\infty}^{+\infty}{f_1\left( \tau \right) f_2\left( t-\tau \right)}d\tau</script><p>&emsp;<strong>为函数</strong>$f_1\left( x \right) ,f_2\left( x \right)$<strong>的卷积</strong></p>
-<p><strong>若函数</strong>$f_1\left( t \right) ,f_2\left( t \right)$<strong>满足：当</strong>$t&lt;0$<strong>时</strong>，$f_1\left( t \right) =f_2\left( t \right) =0$,<strong>则有</strong></p>
-<script type="math/tex; mode=display">f_1\left( t \right) \ast f_2\left( t \right) =\int_0^t{f_1\left( \tau \right) f_2\left( t-\tau \right)}d\tau</script>
+                <h2 id="变换定义"><a href="#变换定义" class="headerlink" title="变换定义"></a>变换定义</h2><blockquote>
+<p>$f\left( x \right)$在$t\ge 0$有定义，且积分</p>
+<script type="math/tex; mode=display">\int_0^{+\infty}{f\left( t \right) e^{-st}}dt\ \ \left( s\text{为复数} \right)</script><p>在s的某一区域内收敛，则称</p>
+<script type="math/tex; mode=display">F\left( s \right) =\int_0^{+\infty}{f\left( t \right) e^{-st}}dt</script><p>为$f\left( t \right)$的Laplace变换式，记为$F\left( s \right) =\mathscr{L}\left[ f\left( t \right) \right]$</p>
+</blockquote>
+<h2 id="周期函数的Laplace变换"><a href="#周期函数的Laplace变换" class="headerlink" title="周期函数的Laplace变换"></a>周期函数的Laplace变换</h2><blockquote>
+<p>对于一个以$T$为周期的函数**$f\left( t \right)$ ，当$f\left( t \right)$在一个周期上分段连续时，有</p>
+<script type="math/tex; mode=display">\mathscr{L}\left[ f\left( t \right) \right] =\frac{1}{1-e^{-sT}}\int_0^T{f\left( t \right) e^{-st}}dt\ \ \ \ \ \ \text{其中Re}s\left( s \right) >0</script></blockquote>
+<h2 id="Laplace变换性质"><a href="#Laplace变换性质" class="headerlink" title="Laplace变换性质"></a>Laplace变换性质</h2><blockquote>
+<p>1.线性性质</p>
+<script type="math/tex; mode=display">\mathscr{L}\left[ \alpha f_1\left( t \right) +\beta f_2\left( t \right) \right] =\alpha \mathscr{L}\left[ f_1\left( t \right) \right] +\beta \mathscr{L}\left[ f_2\left( t \right) \right]</script><p>2.微分性质<br>（1）象原函数的微分性质<br>设$\mathscr{L}\left[ f\left( t \right) \right] =F\left( s \right)$</p>
+<script type="math/tex; mode=display">\mathscr{L}\left[ f^{\left( n \right)}\left( t \right) \right] =s^nF\left( s \right) -\sum_{i=0}^{n-1}{s^{n-1-i}f^{\left( i \right)}\left( 0 \right)}\ \ \ \text{Re}s\left( s \right) >c</script><p>（2）象函数的微分性质<br>设$\mathscr{L}\left[ f\left( t \right) \right] =F\left( s \right)$</p>
+<script type="math/tex; mode=display">F^{\left( n \right)}\left( s \right) =\left( -1 \right) ^n\mathscr{L}\left[ t^nf\left( t \right) \right] \ \ \ \ \text{Re}s\left( s \right) >c</script><p>3.积分性质</p>
+<p>(1）象原函数的积分性质<br>设$\mathscr{L}\left[ f\left( t \right) \right] =F\left( s \right)$</p>
+<script type="math/tex; mode=display">\mathscr{L}\left[ \int_0^t{f\left( t \right)}dt \right] =\frac{1}{s}F\left( s \right)</script><p>（2）象函数的积分性质<br>设$\mathscr{L}\left[ f\left( t \right) \right] =F\left( s \right)$</p>
+<script type="math/tex; mode=display">\mathscr{L}\left[ \frac{f\left( t \right)}{t} \right] =\int_s^{+\infty}{F\left( s \right)}ds</script><p>一般地，有</p>
+<script type="math/tex; mode=display">\mathscr{L}\left[ \frac{f\left( t \right)}{t^n} \right] =\underset{n\text{次积分}}{\underbrace{\int_s^{+\infty}{\int_s^{+\infty}{...\int_s^{+\infty}{F\left( s \right)}ds}}}}</script><p>4.位移性质<br>设$\mathscr{L}\left[ f\left( t \right) \right] =F\left( s \right)$,则有</p>
+<script type="math/tex; mode=display">\mathscr{L}\left[ e^{at}f\left( t \right) \right] =F\left( s-a \right) \ \</script><p>5.延迟性质<br>设$\mathscr{L}\left[ f\left( t \right) \right] =F\left( s \right) \text{，}t&lt;0$时，$f\left( t \right) =0$，则对于任意非负实数$\tau$，有</p>
+<script type="math/tex; mode=display">\mathscr{L}\left[ f\left( t-\tau \right) \right] =e^{-s\tau}F\left( s \right)</script></blockquote>
+<h2 id="Laplace逆变换的求法"><a href="#Laplace逆变换的求法" class="headerlink" title="Laplace逆变换的求法"></a>Laplace逆变换的求法</h2><blockquote>
+<p>定理1（留数):<br>$s_i\left( i=1,2,,,n \right)$是函数$F\left( s \right)$的所有奇点,且当$s\rightarrow \infty$时$,F\left( s \right) \rightarrow 0$,则有</p>
+<script type="math/tex; mode=display">f\left( t \right) =\sum_{k=1}^n{\text{Re}s\left[ F\left( s \right) e^{st},s_k \right]}\ \ \ t>0</script><p>定理2（卷积):<br>若函数$f_1\left( t \right)$和$f_2\left( t \right)$满足Laplace变换存在定理中的条件,且$\mathscr{L}\left[ f_1\left( t \right) \right] =F_1\left( s \right) \mathscr{L}\left[ f_2\left( t \right) \right] =F_2\left( s \right)$ ,则$f_1\left( t \right) \ast f_2\left( t \right)&gt;$的Laplce变换一定存在，则</p>
+<script type="math/tex; mode=display">\mathscr{L}\left[ f_1\left( t \right) \ast f_2\left( t \right) \right] =\mathscr{L}\left[ f_1\left( t \right) \right] \cdot \mathscr{L}\left[ f_2\left( t \right) \right] =F_1\left( s \right) \cdot F_2\left( s \right)</script><p>这个性质表明两个函数卷积的Laplace变换等于这两个函数Laplace变换乘积</p>
+<p>卷积定义：<br>设有两个函数**$f_1\left( t \right) ,f_2\left( t \right)$ ,称积分</p>
+<script type="math/tex; mode=display">f_1\left( t \right) \ast f_2\left( t \right) =\int_{-\infty}^{+\infty}{f_1\left( \tau \right) f_2\left( t-\tau \right)}d\tau</script><p>为函数$f_1\left( x \right) ,f_2\left( x \right)$的卷积<br>若函数$f_1\left( t \right) ,f_2\left( t \right)$满足：当$t&lt;0$时，$f_1\left( t \right) =f_2\left( t \right) =0$,则有</p>
+<script type="math/tex; mode=display">f_1\left( t \right) \ast f_2\left( t \right) =\int_0^t{f_1\left( \tau \right) f_2\left( t-\tau \right)}d\tau</script></blockquote>
+
             </div>
             <hr/>
 

@@ -525,10 +525,10 @@ public:
     }
 }；
 </code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><blockquote>
-<p>时间复杂度 <code>o(n)</code><br>空间复杂度 <code>o(1)</code></p>
+<p>时间复杂度 <code>O(n)</code><br>空间复杂度 <code>O(1)</code></p>
 </blockquote>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><blockquote>
-<p>对于出现两次(或者偶数次的重复数可以采用异或)，但若是未交代重复次数，则一般利用<code>hash</code>,这样的话空间复杂度则会变成<code>o(n)</code>,但也无伤大雅。</p>
+<p>对于出现两次(或者偶数次的重复数可以采用异或)，但若是未交代重复次数，则一般利用<code>hash</code>,这样的话空间复杂度则会变成<code>O(n)</code>,但也无伤大雅。</p>
 </blockquote>
 
             </div>
@@ -762,34 +762,34 @@ public:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/05/17/%E6%97%A0%E9%87%8D%E5%A4%8D%E6%95%B0%E5%AD%97/">
+                <a href="/2020/05/18/%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="无重复数字">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="最长递增子序列">
                         
-                        <span class="card-title">无重复数字</span>
+                        <span class="card-title">最长递增子序列</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             问题描述
-对于给定数组nums,寻找数组中无重复的数字，假定此数字唯一，且重复数字仅出现两次。例如：给定nums = [1, 2, 3, 1, 2, 3, 4]  ，则  res = 4
+给定一无序整数数组，求其最长递增子序列的长度。例：输入 [10,9,2,5,3,7,101,18] 输出 4
 
 问题分析
-此题主要考察异或^的用法，我们知道对于任
+经典dp问题，我们考虑dp[i]为前i+1个数字最长递增子序列的长度，状态转移方程如下：
+dp\left[ 
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-17
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-18
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -798,7 +798,6 @@ public:
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -830,8 +829,8 @@ public:
                     <div class="summary block-with-text">
                         
                             变换定义
-&emsp;$f\left( x \right)$在$t\ge 0$有定义，且积分
-\int_0^{+\infty}{f\left( t \right) e^{-st}}dt\ \ \left( s\text{为复数} \righ
+$f\left( x \right)$在$t\ge 0$有定义，且积分
+\int_0^{+\infty}{f\left( t \right) e^{-st}}dt\ \ \left( s\text{为复数} \right)在s的某
                         
                     </div>
                     <div class="publish-info">
