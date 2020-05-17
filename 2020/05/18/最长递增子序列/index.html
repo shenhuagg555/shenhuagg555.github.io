@@ -514,7 +514,7 @@
 </blockquote>
 <h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><blockquote>
 <p>经典<code>dp</code>问题，我们考虑<code>dp[i]</code>为前<code>i+1</code>个数字最长递增子序列的长度，状态转移方程如下：</p>
-<script type="math/tex; mode=display">dp\left[ i \right] =\max \left\{ dp\left[ i \right] ,\ dp\left[ j \right] +1 \right\} \ \ if\ nums\left[ i \right] \ >\ nums\left[ j \right] \ \left( 0\ \le \ j\ <\ i \right)</script><p>从而算出任意给定数组的最长递增子序列的长度。</p>
+<script type="math/tex; mode=display">dp\left[ i \right] =\max \left\{ dp\left[ i \right] ,\ dp\left[ j \right] +1 \right\} \ \ \ if\ \ nums\left[ i \right] \ >\ nums\left[ j \right] \ \left( 0\ \le \ j\ <\ i \right)</script><p>从而算出任意给定数组的最长递增子序列的长度。</p>
 </blockquote>
 <h2 id="cpp代码"><a href="#cpp代码" class="headerlink" title="cpp代码"></a>cpp代码</h2><pre class=" language-lang-cpp"><code class="language-lang-cpp">class solution{
 public:
