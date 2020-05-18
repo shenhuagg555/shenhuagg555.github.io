@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Raúl</title>
+  
+  <subtitle>I am a slow walker, but I never walk back.</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://shenhuagg555.github.io/%20https://shenhuagg555.gitee.io/"/>
+  <updated>2020-05-18T03:58:03.492Z</updated>
+  <id>https://shenhuagg555.github.io/%20https://shenhuagg555.gitee.io/</id>
+  
+  <author>
+    <name>with me.</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>单位冲击函数基础</title>
+    <link href="https://shenhuagg555.github.io/%20https://shenhuagg555.gitee.io/posts/fad5.html"/>
+    <id>https://shenhuagg555.github.io/%20https://shenhuagg555.gitee.io/posts/fad5.html</id>
+    <published>2020-05-18T01:57:55.000Z</published>
+    <updated>2020-05-18T03:58:03.492Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;函数定义&quot;&gt;&lt;a href=&quot;#函数定义&quot; class=&quot;headerlink&quot; title=&quot;函数定义&quot;&gt;&lt;/a&gt;函数定义&lt;/h2&gt;&lt;blockquote&gt;
+&lt;script type=&quot;math/tex;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Integral transform" scheme="https://shenhuagg555.github.io/ https://shenhuagg555.gitee.io/tags/Integral-transform/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>最长递增子序列</title>
+    <link href="https://shenhuagg555.github.io/%20https://shenhuagg555.gitee.io/posts/c02f.html"/>
+    <id>https://shenhuagg555.github.io/%20https://shenhuagg555.gitee.io/posts/c02f.html</id>
+    <published>2020-05-17T18:34:18.000Z</published>
+    <updated>2020-05-18T03:59:21.010Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;给定一无序整数数组，求其最长递增子序列的长度。&lt;br&gt;例：输入
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Data structure and algorithm" scheme="https://shenhuagg555.github.io/ https://shenhuagg555.gitee.io/tags/Data-structure-and-algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>无重复数字</title>
+    <link href="https://shenhuagg555.github.io/%20https://shenhuagg555.gitee.io/posts/ff7b.html"/>
+    <id>https://shenhuagg555.github.io/%20https://shenhuagg555.gitee.io/posts/ff7b.html</id>
+    <published>2020-05-17T14:45:12.000Z</published>
+    <updated>2020-05-18T03:57:25.774Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Data structure and algorithm" scheme="https://shenhuagg555.github.io/ https://shenhuagg555.gitee.io/tags/Data-structure-and-algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Laplace变换基础</title>
+    <link href="https://shenhuagg555.github.io/%20https://shenhuagg555.gitee.io/posts/b659.html"/>
+    <id>https://shenhuagg555.github.io/%20https://shenhuagg555.gitee.io/posts/b659.html</id>
+    <published>2020-05-15T20:20:57.000Z</published>
+    <updated>2020-05-18T03:58:11.976Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Laplace变换定义&quot;&gt;&lt;a href=&quot;#Laplace变换定义&quot; class=&quot;headerlink&quot; title=&quot;Laplace变换定义&quot;&gt;&lt;/a&gt;Laplace变换定义&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;$f\left( x
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Integral transform" scheme="https://shenhuagg555.github.io/ https://shenhuagg555.gitee.io/tags/Integral-transform/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>单链表分离奇偶节点</title>
+    <link href="https://shenhuagg555.github.io/%20https://shenhuagg555.gitee.io/posts/4341.html"/>
+    <id>https://shenhuagg555.github.io/%20https://shenhuagg555.gitee.io/posts/4341.html</id>
+    <published>2020-05-15T19:35:09.000Z</published>
+    <updated>2020-05-18T03:57:06.493Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;要求&quot;&gt;&lt;a href=&quot;#要求&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Data structure and algorithm" scheme="https://shenhuagg555.github.io/ https://shenhuagg555.gitee.io/tags/Data-structure-and-algorithm/"/>
+    
+  </entry>
+  
+</feed>

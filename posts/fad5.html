@@ -29,7 +29,8 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
     <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Raúl" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
 
 
 <body>
@@ -469,7 +470,25 @@
 <h2 id="性质5——微分性质"><a href="#性质5——微分性质" class="headerlink" title="性质5——微分性质"></a>性质5——微分性质</h2><blockquote>
 <script type="math/tex; mode=display">\int_{-\infty}^{+\infty}{\delta ^{\left( n \right)}\left( t \right) f\left( t \right)}dt=\left( -1 \right) ^nf^{\left( n \right)}\left( 0 \right)</script><p><strong>特别地</strong></p>
 <script type="math/tex; mode=display">\int_{-\infty}^{+\infty}{\delta '\left( t \right) f\left( t \right)}dt=-f'\left( 0 \right)</script></blockquote>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 

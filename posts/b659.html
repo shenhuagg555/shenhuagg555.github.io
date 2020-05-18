@@ -29,7 +29,8 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
     <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Raúl" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
 
 
 <body>
@@ -473,7 +474,25 @@
 <script type="math/tex; mode=display">f_1\left( t \right) \ast f_2\left( t \right) =\int_{-\infty}^{+\infty}{f_1\left( \tau \right) f_2\left( t-\tau \right)}d\tau</script><p>为函数$f_1\left( x \right) ,f_2\left( x \right)$的卷积</p>
 <p>若函数$f_1\left( t \right) ,f_2\left( t \right)$满足：当$t&lt;0$时，$f_1\left( t \right) =f_2\left( t \right) =0$,则有</p>
 <script type="math/tex; mode=display">f_1\left( t \right) \ast f_2\left( t \right) =\int_0^t{f_1\left( \tau \right) f_2\left( t-\tau \right)}d\tau</script></blockquote>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
