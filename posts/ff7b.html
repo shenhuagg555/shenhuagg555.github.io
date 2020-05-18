@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="单位冲击函数基础, C/C++，Python，Java等">
+    <meta name="keywords" content="无重复数字, C/C++，Python，Java等">
     <meta name="description" content="博主很懒，什么都没有留下">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>单位冲击函数基础 | Raúl</title>
+    <title>无重复数字 | Raúl</title>
     <link rel="icon" type="image/png" href="/medias/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -355,12 +355,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">单位冲击函数基础</h1>
+                    <h1 class="description center-align post-title">无重复数字</h1>
                 </div>
             </div>
         </div>
@@ -477,8 +477,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Integral-transform/">
-                                <span class="chip bg-color">Integral transform</span>
+                            <a href="/tags/Data-structure-and-algorithm/">
+                                <span class="chip bg-color">Data structure and algorithm</span>
                             </a>
                         
                     </div>
@@ -493,7 +493,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-18
+                    2020-05-17
                 </div>
                 
 
@@ -509,29 +509,27 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h2><blockquote>
-<script type="math/tex; mode=display">\delta_{\varepsilon}\left( t\right) =
-\left\{
-\begin{aligned}
-  0 & \ \ \ \ \ \ t<0 \\
-    \frac{1}{\varepsilon} & \ \ \ \ \ \ 0\le t\le \varepsilon\\
-    0 & \ \ \ \ \ \ t>\varepsilon
-\end{aligned}
-\right.</script><p><strong>若满足</strong> </p>
-<script type="math/tex; mode=display">\underset{\varepsilon \rightarrow 0}{\lim}\int_{-\infty}^{+\infty}{\delta _{\varepsilon}\left( t \right) f\left( t \right)}dt=\int_{-\infty}^{+\infty}{\delta \left( t \right) f\left( t \right)}dt</script><p><strong>则称其为单位冲激函数</strong></p>
+                <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><blockquote>
+<p>对于给定数组<code>nums</code>,寻找数组中无重复的数字，假定此数字唯一，且重复数字仅出现两次。<br>例如：给定<code>nums = [1, 2, 3, 1, 2, 3, 4]</code>  ，则  <code>res = 4</code></p>
 </blockquote>
-<h2 id="性质1——归一性"><a href="#性质1——归一性" class="headerlink" title="性质1——归一性"></a>性质1——归一性</h2><blockquote>
-<script type="math/tex; mode=display">\int_{-\infty}^{+\infty}{\delta\left( t \right)}dt=1</script></blockquote>
-<h2 id="性质2——筛选性"><a href="#性质2——筛选性" class="headerlink" title="性质2——筛选性"></a>性质2——筛选性</h2><blockquote>
-<script type="math/tex; mode=display">f\left( t \right) =\int_{-\infty}^{+\infty}{f\left( \tau \right) \delta\left( \tau -t \right)}d\tau</script><p><strong>特别地</strong></p>
-<script type="math/tex; mode=display">\int_{-\infty}^{+\infty}{f\left( \tau \right) \delta \left( \tau \right)}d\tau =f\left( 0 \right)</script></blockquote>
-<h2 id="性质3——奇偶性"><a href="#性质3——奇偶性" class="headerlink" title="性质3——奇偶性"></a>性质3——奇偶性</h2><blockquote>
-<script type="math/tex; mode=display">\delta \left( t \right) =\delta \left( -t \right)</script></blockquote>
-<h2 id="性质4——积分性质"><a href="#性质4——积分性质" class="headerlink" title="性质4——积分性质"></a>性质4——积分性质</h2><blockquote>
-<script type="math/tex; mode=display">u\left( t \right) =\int_{-\infty}^t{\delta \left( \tau \right)}d\tau</script></blockquote>
-<h2 id="性质5——微分性质"><a href="#性质5——微分性质" class="headerlink" title="性质5——微分性质"></a>性质5——微分性质</h2><blockquote>
-<script type="math/tex; mode=display">\int_{-\infty}^{+\infty}{\delta ^{\left( n \right)}\left( t \right) f\left( t \right)}dt=\left( -1 \right) ^nf^{\left( n \right)}\left( 0 \right)</script><p><strong>特别地</strong></p>
-<script type="math/tex; mode=display">\int_{-\infty}^{+\infty}{\delta '\left( t \right) f\left( t \right)}dt=-f'\left( 0 \right)</script></blockquote>
+<h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><blockquote>
+<p>此题主要考察异或<code>^</code>的用法，我们知道对于任意数<code>n</code>有以下性质 ：<br><code>n ^ n = 0</code><br><code>0 ^ n = n</code><br>知道有这样的性质后，结合题意，我们可以想到将数组中所有元素异或的结果即为所求。</p>
+</blockquote>
+<h2 id="cpp代码"><a href="#cpp代码" class="headerlink" title="cpp代码"></a>cpp代码</h2><pre><code>class solution{
+public:
+    int func(vector&lt;int&gt; &amp;nums){
+        int res = nums[0];
+        for(int i = 1; i &lt; nums.size(); i++)
+            res ^= nums[i];
+        return res;
+    }
+}；
+</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><blockquote>
+<p>时间复杂度 <code>O(n)</code><br>空间复杂度 <code>O(1)</code></p>
+</blockquote>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><blockquote>
+<p>对于出现两次(或者偶数次的重复数可以采用异或)，但若是未交代重复次数，则一般利用<code>hash</code>,这样的话空间复杂度则会变成<code>O(n)</code>,但也无伤大雅。</p>
+</blockquote>
 
             </div>
             <hr/>
@@ -557,7 +555,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://shenhuagg555.github.io/ https://shenhuagg555.gitee.io/2020/05/18/%E5%8D%95%E4%BD%8D%E5%86%B2%E5%87%BB%E5%87%BD%E6%95%B0%E5%9F%BA%E7%A1%80/">https://shenhuagg555.github.io/ https://shenhuagg555.gitee.io/2020/05/18/%E5%8D%95%E4%BD%8D%E5%86%B2%E5%87%BB%E5%87%BD%E6%95%B0%E5%9F%BA%E7%A1%80/</a>
+                    <a href="https://shenhuagg555.github.io/ https://shenhuagg555.gitee.io/posts/ff7b.html">https://shenhuagg555.github.io/ https://shenhuagg555.gitee.io/posts/ff7b.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -595,8 +593,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Integral-transform/">
-                                    <span class="chip bg-color">Integral transform</span>
+                                <a href="/tags/Data-structure-and-algorithm/">
+                                    <span class="chip bg-color">Data structure and algorithm</span>
                                 </a>
                             
                         </div>
@@ -764,64 +762,11 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
-            <div class="card">
-                <a href="/2020/05/18/%E5%8D%95%E4%BD%8D%E5%86%B2%E5%87%BB%E5%87%BD%E6%95%B0%E5%9F%BA%E7%A1%80/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="单位冲击函数基础">
-                        
-                        <span class="card-title">单位冲击函数基础</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            函数定义
-\delta_{\varepsilon}\left( t\right) =
-\left\{
-\begin{aligned}
-  0 & \ \ \ \ \ \ t\varepsilon
-\end{aligned}
-\right.若
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-18
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            with me.
-                            
-                        </span>
-                    </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Integral-transform/">
-                        <span class="chip bg-color">Integral transform</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/05/18/%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97/">
+                <a href="/posts/c02f.html">
                     <div class="card-image">
                         
                         
@@ -842,9 +787,9 @@ dp\left[
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-18
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-18
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -858,6 +803,53 @@ dp\left[
                     
                     <a href="/tags/Data-structure-and-algorithm/">
                         <span class="chip bg-color">Data structure and algorithm</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/b659.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Laplace变换基础">
+                        
+                        <span class="card-title">Laplace变换基础</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Laplace变换定义
+$f\left( x \right)$在$t\ge 0$有定义，且积分
+\int_0^{+\infty}{f\left( t \right) e^{-st}}dt\ \ \left( s\text{为复数} \rig
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            with me.
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Integral-transform/">
+                        <span class="chip bg-color">Integral transform</span>
                     </a>
                     
                 </div>
@@ -995,13 +987,6 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
-    });
-</script>
 
 
 
