@@ -457,17 +457,16 @@
 <h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><blockquote>
 <p>此题主要考察异或<code>^</code>的用法，我们知道对于任意数<code>n</code>有以下性质 ：<br><code>n ^ n = 0</code><br><code>0 ^ n = n</code><br>知道有这样的性质后，结合题意，我们可以想到将数组中所有元素异或的结果即为所求。</p>
 </blockquote>
-<h2 id="cpp代码"><a href="#cpp代码" class="headerlink" title="cpp代码"></a>cpp代码</h2><pre class=" language-lang-cpp"><code class="language-lang-cpp">class Solution{
+<h2 id="cpp代码"><a href="#cpp代码" class="headerlink" title="cpp代码"></a>cpp代码</h2><pre><code>class Solution{
 public:
-    int func(vector<int> &nums){
+    int func(vector&lt;int&gt; &amp;nums){
         int res = nums[0];
-        for(int i = 1; i < nums.size(); i++)
+        for(int i = 1; i &lt; nums.size(); i++)
             res ^= nums[i];
         return res;
     }
 }；
-</code></pre>
-<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><blockquote>
+</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><blockquote>
 <p>时间复杂度 <code>O(n)</code><br>空间复杂度 <code>O(1)</code></p>
 </blockquote>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><blockquote>

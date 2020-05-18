@@ -457,8 +457,19 @@
 <h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><blockquote>
 <p>可以通过暴力法两层循环，但显然此法时间复杂度为<code>O(n^2)</code>，通过分析利用哈希表是很好的处理方法，它的查找时间是<code>O(1)</code>。</p>
 </blockquote>
-<h2 id="cpp代码"><a href="#cpp代码" class="headerlink" title="cpp代码"></a>cpp代码</h2><p>```cpp<br>class Solution {<br>public:<br>    vector<int> twoSum(vector<int>&amp; nums, int target) {<br>        unordered_map<int, int=""> hmap;<br>        for(int i = 0; i &lt; nums.size(); i++){<br>            if(hmap.find(target-nums[i]) != hmap.end())<br>                return {hmap[target-nums[i]] , i};<br>            hmap[nums[i]] = i;<br>        }<br>        return {};<br>    }<br>};</int,></int></int></p>
-<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><blockquote>
+<h2 id="cpp代码"><a href="#cpp代码" class="headerlink" title="cpp代码"></a>cpp代码</h2><pre><code>class Solution {
+public:
+    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) {
+        unordered_map&lt;int, int&gt; hmap;
+        for(int i = 0; i &lt; nums.size(); i++){
+            if(hmap.find(target-nums[i]) != hmap.end())
+                return {hmap[target-nums[i]] , i};
+            hmap[nums[i]] = i;
+        }
+        return {};
+    }
+};
+</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><blockquote>
 <p>时间复杂度 <code>O(n)</code><br>空间复杂度 <code>O(n)</code></p>
 </blockquote>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><blockquote>
@@ -735,8 +746,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            问题描述
-给定一个整数数组nums和一个目标值target,请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。你可以假设每种输入只会对应一个答案。但数组中同一个元素不能使用两遍。例：给定 nums = [2, 7, 11, 1
+                             
                         
                     </div>
                     <div class="publish-info">
