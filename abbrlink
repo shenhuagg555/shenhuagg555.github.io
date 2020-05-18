@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="无重复数字, C/C++，Python，Java等">
+    <meta name="keywords" content="单链表分离奇偶节点, C/C++，Python，Java等">
     <meta name="description" content="博主很懒，什么都没有留下">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>无重复数字 | Raúl</title>
+    <title>单链表分离奇偶节点 | Raúl</title>
     <link rel="icon" type="image/png" href="/medias/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -293,12 +293,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">无重复数字</h1>
+                    <h1 class="description center-align post-title">单链表分离奇偶节点</h1>
                 </div>
             </div>
         </div>
@@ -415,8 +415,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Data-structure-and-algorithm/">
-                                <span class="chip bg-color">Data structure and algorithm</span>
+                            <a href="/tags/Data-structure-and-algorithm-%E9%93%BE%E8%A1%A8/">
+                                <span class="chip bg-color">Data structure and algorithm 链表</span>
                             </a>
                         
                     </div>
@@ -431,7 +431,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-17
+                    2020-05-16
                 </div>
                 
 
@@ -447,27 +447,62 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><blockquote>
-<p>对于给定数组<code>nums</code>,寻找数组中无重复的数字，假定此数字唯一，且重复数字仅出现两次。<br>例如：给定<code>nums = [1, 2, 3, 1, 2, 3, 4]</code>  ，则  <code>res = 4</code></p>
+                <h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><blockquote>
+<p>函数<code>readlist</code>从标准输入读入一系列正整数，按照读入顺序建立单链表。当读到<code>−1</code>时表示输入结束，函数应返回指向单链表头结点的指针。</p>
+<p>函数<code>getodd</code>将单链表<code>L</code>中奇数值的结点分离出来，重新组成一个新的链表。返回指向新链表头指针，同时将<code>L</code>改为删除了奇数值结点后的链表的头指针</p>
 </blockquote>
-<h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><blockquote>
-<p>此题主要考察异或<code>^</code>的用法，我们知道对于任意数<code>n</code>有以下性质 ：<br><code>n ^ n = 0</code><br><code>0 ^ n = n</code><br>知道有这样的性质后，结合题意，我们可以想到将数组中所有元素异或的结果即为所求。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><blockquote>
+<p>函数<code>readlist</code>不必说，就是一层循环，判断输入是否为<code>-1</code>,返回头指针。</p>
+<p>函数<code>getodd</code>首先创建奇链表的头指针<code>jList</code>，遍历创建好的链表，遇到奇数节点，利用尾插法将奇数节点链接在<code>jList</code>上，偶数节点时，创建一个临时指针保存当前节点（遇到奇数节点时，临时指针就是当前节点的前序节点，原链表可以跨过此节点）。</p>
 </blockquote>
-<h2 id="cpp代码"><a href="#cpp代码" class="headerlink" title="cpp代码"></a>cpp代码</h2><pre><code>class solution{
-public:
-    int func(vector&lt;int&gt; &amp;nums){
-        int res = nums[0];
-        for(int i = 1; i &lt; nums.size(); i++)
-            res ^= nums[i];
-        return res;
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre class=" language-lang-c"><code class="language-lang-c">struct ListNode *creatNode(int x){
+    struct ListNode *p = (struct ListNode *)malloc(sizeof(struct ListNode));
+    p->data = x;
+    p->next = NULL;
+    return p;
+}
+
+struct ListNode *readlist(){
+    int x;
+    scanf("%d", &x);
+    struct ListNode *head = creatNode(x);
+    struct ListNode *pre = head;
+    scanf("%d", &x);
+    while(x != -1){
+        struct ListNode *p = creatNode(x);
+        pre->next = p;
+        pre = p;
+        scanf("%d", &x);
     }
-}；
-</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><blockquote>
-<p>时间复杂度 <code>O(n)</code><br>空间复杂度 <code>O(1)</code></p>
-</blockquote>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><blockquote>
-<p>对于出现两次(或者偶数次的重复数可以采用异或)，但若是未交代重复次数，则一般利用<code>hash</code>,这样的话空间复杂度则会变成<code>O(n)</code>,但也无伤大雅。</p>
-</blockquote>
+    return head;
+}
+struct ListNode *getodd( struct ListNode **L ){
+    struct ListNode *jList = (struct ListNode *)malloc(sizeof(struct ListNode));
+    jList->next = NULL;
+    struct ListNode *jpre = jList;
+    while(*L && (*L)->data % 2 == 1){
+        jpre->next = *L;
+        jpre = jpre->next;
+        *L = (*L)->next;
+    }
+    struct ListNode *oList = *L;
+    struct ListNode *opre = oList;
+    while (oList) {
+        if (oList->data % 2 == 1) {
+            jpre->next = oList;
+            jpre = jpre->next;
+            opre->next = oList->next;
+            oList = oList->next;
+        }
+        else {
+            opre = oList;
+            oList = oList->next;
+        }
+    }
+    jpre->next = NULL;
+    return jList->next;
+}
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -511,7 +546,7 @@ public:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://shenhuagg555.github.io/ https://shenhuagg555.gitee.io/posts/ff7b.html">https://shenhuagg555.github.io/ https://shenhuagg555.gitee.io/posts/ff7b.html</a>
+                    <a href="https://shenhuagg555.gitee.io/abbrlink">https://shenhuagg555.gitee.io/abbrlink</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -549,8 +584,8 @@ public:
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Data-structure-and-algorithm/">
-                                    <span class="chip bg-color">Data structure and algorithm</span>
+                                <a href="/tags/Data-structure-and-algorithm-%E9%93%BE%E8%A1%A8/">
+                                    <span class="chip bg-color">Data structure and algorithm 链表</span>
                                 </a>
                             
                         </div>
@@ -722,13 +757,13 @@ public:
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/c02f.html">
+                <a href="/abbrlink">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="最长递增子序列">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Laplace变换基础">
                         
-                        <span class="card-title">最长递增子序列</span>
+                        <span class="card-title">Laplace变换基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -739,7 +774,7 @@ public:
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-18
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-16
                         </span>
                         <span class="publish-author">
                             
@@ -752,8 +787,8 @@ public:
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Data-structure-and-algorithm/">
-                        <span class="chip bg-color">Data structure and algorithm</span>
+                    <a href="/tags/Integral-transform/">
+                        <span class="chip bg-color">Integral transform</span>
                     </a>
                     
                 </div>
@@ -764,16 +799,16 @@ public:
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="/posts/b659.html">
+                <a href="/abbrlink">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Laplace变换基础">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="单链表分离奇偶节点">
                         
-                        <span class="card-title">Laplace变换基础</span>
+                        <span class="card-title">单链表分离奇偶节点</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -794,11 +829,12 @@ public:
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Integral-transform/">
-                        <span class="chip bg-color">Integral transform</span>
+                    <a href="/tags/Data-structure-and-algorithm-%E9%93%BE%E8%A1%A8/">
+                        <span class="chip bg-color">Data structure and algorithm 链表</span>
                     </a>
                     
                 </div>
