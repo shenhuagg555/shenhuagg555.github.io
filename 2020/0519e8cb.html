@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="单位冲击函数基础, C/C++，Python，Java等">
+    <meta name="keywords" content="TwoSum问题, C/C++，Python，Java等">
     <meta name="description" content="博主很懒，什么都没有留下">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>单位冲击函数基础 | Raúl</title>
+    <title>TwoSum问题 | Raúl</title>
     <link rel="icon" type="image/png" href="/medias/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -293,12 +293,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">单位冲击函数基础</h1>
+                    <h1 class="description center-align post-title">TwoSum问题</h1>
                 </div>
             </div>
         </div>
@@ -415,8 +415,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Integral-transform/">
-                                <span class="chip bg-color">Integral transform</span>
+                            <a href="/tags/Data-structure-and-algorithm/">
+                                <span class="chip bg-color">Data structure and algorithm</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/">
+                                <span class="chip bg-color">哈希表</span>
                             </a>
                         
                     </div>
@@ -431,7 +435,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-18
+                    2020-05-19
                 </div>
                 
 
@@ -447,29 +451,19 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h2><blockquote>
-<script type="math/tex; mode=display">\delta_{\varepsilon}\left( t\right) =
-\left\{
-\begin{aligned}
-  0 & \ \ \ \ \ \ t<0 \\
-    \frac{1}{\varepsilon} & \ \ \ \ \ \ 0\le t\le \varepsilon\\
-    0 & \ \ \ \ \ \ t>\varepsilon
-\end{aligned}
-\right.</script><p><strong>若满足</strong> </p>
-<script type="math/tex; mode=display">\underset{\varepsilon \rightarrow 0}{\lim}\int_{-\infty}^{+\infty}{\delta _{\varepsilon}\left( t \right) f\left( t \right)}dt=\int_{-\infty}^{+\infty}{\delta \left( t \right) f\left( t \right)}dt</script><p><strong>则称其为单位冲激函数</strong></p>
+                <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><blockquote>
+<p>给定一个整数数组<code>nums</code>和一个目标值<code>target</code>,请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。<br>你可以假设每种输入只会对应一个答案。但数组中同一个元素不能使用两遍。<br>例：给定 <code>nums = [2, 7, 11, 15]</code>, <code>target = 9</code>， 返回<code>[0, 1]</code></p>
 </blockquote>
-<h2 id="性质1——归一性"><a href="#性质1——归一性" class="headerlink" title="性质1——归一性"></a>性质1——归一性</h2><blockquote>
-<script type="math/tex; mode=display">\int_{-\infty}^{+\infty}{\delta\left( t \right)}dt=1</script></blockquote>
-<h2 id="性质2——筛选性"><a href="#性质2——筛选性" class="headerlink" title="性质2——筛选性"></a>性质2——筛选性</h2><blockquote>
-<script type="math/tex; mode=display">f\left( t \right) =\int_{-\infty}^{+\infty}{f\left( \tau \right) \delta\left( \tau -t \right)}d\tau</script><p><strong>特别地</strong></p>
-<script type="math/tex; mode=display">\int_{-\infty}^{+\infty}{f\left( \tau \right) \delta \left( \tau \right)}d\tau =f\left( 0 \right)</script></blockquote>
-<h2 id="性质3——奇偶性"><a href="#性质3——奇偶性" class="headerlink" title="性质3——奇偶性"></a>性质3——奇偶性</h2><blockquote>
-<script type="math/tex; mode=display">\delta \left( t \right) =\delta \left( -t \right)</script></blockquote>
-<h2 id="性质4——积分性质"><a href="#性质4——积分性质" class="headerlink" title="性质4——积分性质"></a>性质4——积分性质</h2><blockquote>
-<script type="math/tex; mode=display">u\left( t \right) =\int_{-\infty}^t{\delta \left( \tau \right)}d\tau</script></blockquote>
-<h2 id="性质5——微分性质"><a href="#性质5——微分性质" class="headerlink" title="性质5——微分性质"></a>性质5——微分性质</h2><blockquote>
-<script type="math/tex; mode=display">\int_{-\infty}^{+\infty}{\delta ^{\left( n \right)}\left( t \right) f\left( t \right)}dt=\left( -1 \right) ^nf^{\left( n \right)}\left( 0 \right)</script><p><strong>特别地</strong></p>
-<script type="math/tex; mode=display">\int_{-\infty}^{+\infty}{\delta '\left( t \right) f\left( t \right)}dt=-f'\left( 0 \right)</script></blockquote>
+<h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><blockquote>
+<p>可以通过暴力法两层循环，但显然此法时间复杂度为<code>O(n^2)</code>，通过分析利用哈希表是很好的处理方法，它的查找时间是<code>O(1)</code>。</p>
+</blockquote>
+<h2 id="cpp代码"><a href="#cpp代码" class="headerlink" title="cpp代码"></a>cpp代码</h2><p>```cpp<br>class Solution {<br>public:<br>    vector<int> twoSum(vector<int>&amp; nums, int target) {<br>        unordered_map<int, int=""> hmap;<br>        for(int i = 0; i &lt; nums.size(); i++){<br>            if(hmap.find(target-nums[i]) != hmap.end())<br>                return {hmap[target-nums[i]] , i};<br>            hmap[nums[i]] = i;<br>        }<br>        return {};<br>    }<br>};</int,></int></int></p>
+<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><blockquote>
+<p>时间复杂度 <code>O(n)</code><br>空间复杂度 <code>O(n)</code></p>
+</blockquote>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><blockquote>
+<p>此题摘自Leetcode第1题，新手玩家可以利用暴力法得出答案，而哈希表也应当是大家思考后能快速想出的办法，多刷题还是有很大帮助的！！！</p>
+</blockquote>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -513,7 +507,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://shenhuagg555.gitee.io/2020/0518fad5.html">https://shenhuagg555.gitee.io/2020/0518fad5.html</a>
+                    <a href="https://shenhuagg555.gitee.io/2020/0519e8cb.html">https://shenhuagg555.gitee.io/2020/0519e8cb.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -551,8 +545,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Integral-transform/">
-                                    <span class="chip bg-color">Integral transform</span>
+                                <a href="/tags/Data-structure-and-algorithm/">
+                                    <span class="chip bg-color">Data structure and algorithm</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/">
+                                    <span class="chip bg-color">哈希表</span>
                                 </a>
                             
                         </div>
@@ -720,9 +718,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/0519e8cb.html">
                     <div class="card-image">
@@ -741,9 +740,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -752,6 +751,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -774,13 +774,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/0518c02f.html">
+                <a href="/2020/0518fad5.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="最长递增子序列">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="单位冲击函数基础">
                         
-                        <span class="card-title">最长递增子序列</span>
+                        <span class="card-title">单位冲击函数基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -804,12 +804,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Data-structure-and-algorithm/">
-                        <span class="chip bg-color">Data structure and algorithm</span>
-                    </a>
-                    
-                    <a href="/tags/dp%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                        <span class="chip bg-color">dp动态规划</span>
+                    <a href="/tags/Integral-transform/">
+                        <span class="chip bg-color">Integral transform</span>
                     </a>
                     
                 </div>
@@ -947,13 +943,6 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
-    });
-</script>
 
 
 

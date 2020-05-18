@@ -458,21 +458,22 @@
 <p>利用<code>dp</code>来做，我们考虑<code>dp[i]</code>为前<code>i+1</code>个数字最长递增子序列的长度，状态转移方程如下：</p>
 <script type="math/tex; mode=display">dp\left[ i \right] =\max \left\{ dp\left[ i \right] ,\ dp\left[ j \right] +1 \right\} \ \ \ if\ \ nums\left[ i \right] \ >\ nums\left[ j \right] \ \left( 0\ \le \ j\ <\ i \right)</script><p>从而算出任意给定数组的最长递增子序列的长度。</p>
 </blockquote>
-<h2 id="cpp代码"><a href="#cpp代码" class="headerlink" title="cpp代码"></a>cpp代码</h2><pre><code>class solution{
+<h2 id="cpp代码"><a href="#cpp代码" class="headerlink" title="cpp代码"></a>cpp代码</h2><pre class=" language-lang-cpp"><code class="language-lang-cpp">class Solution{
 public:
-    int maxLength(vector&lt;int&gt; nums){
-        vector&lt;int&gt; dp(nums.size(), 1);
+    int maxLength(vector<int> nums){
+        vector<int> dp(nums.size(), 1);
         int maxl = 0;
-        for(int i  = 0; i &lt; nums.size(); i++){
-            for(int j = 0; j &lt; i; j++)
-                if(nums[i] &gt; nums[j])
+        for(int i  = 0; i < nums.size(); i++){
+            for(int j = 0; j < i; j++)
+                if(nums[i] > nums[j])
                     dp[i] = max(dp[i], dp[j]+1);
             maxl = max(maxl, dp[i]);
         }
         return maxl;
     }
 };
-</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><blockquote>
+</code></pre>
+<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><blockquote>
 <p>时间复杂度 <code>O(n^2)</code><br>空间复杂度 <code>O(n)</code></p>
 </blockquote>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><blockquote>
