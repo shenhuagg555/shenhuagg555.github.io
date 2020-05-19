@@ -459,7 +459,7 @@
 </blockquote>
 <h2 id="cpp代码"><a href="#cpp代码" class="headerlink" title="cpp代码"></a>cpp代码</h2><pre><code>class Solution {
 public:
-    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) {
+    vector&lt;int&gt; twoSum(vector&lt;int&gt; &amp;nums, int target) {
         unordered_map&lt;int, int&gt; hmap;
         for(int i = 0; i &lt; nums.size(); i++){
             if(hmap.find(target-nums[i]) != hmap.end())
