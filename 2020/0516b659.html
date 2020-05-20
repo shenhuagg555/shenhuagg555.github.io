@@ -447,15 +447,15 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Laplace变换定义"><a href="#Laplace变换定义" class="headerlink" title="Laplace变换定义"></a>Laplace变换定义</h2><blockquote>
+                <h2 id="一-Laplace变换定义"><a href="#一-Laplace变换定义" class="headerlink" title="一.Laplace变换定义"></a>一.Laplace变换定义</h2><blockquote>
 <p>$f\left( x \right)$在$t\ge 0$有定义，且积分</p>
 <script type="math/tex; mode=display">\int_0^{+\infty}{f\left( t \right) e^{-st}}dt\ \ \left( s\text{为复数} \right)</script><p>在s的某一区域内收敛，则称</p>
 <script type="math/tex; mode=display">F\left( s \right) =\int_0^{+\infty}{f\left( t \right) e^{-st}}dt</script><p>为$f\left( t \right)$的Laplace变换式，记为$F\left( s \right) =\mathscr{L}\left[ f\left( t \right) \right]$</p>
 </blockquote>
-<h2 id="周期函数的Laplace变换"><a href="#周期函数的Laplace变换" class="headerlink" title="周期函数的Laplace变换"></a>周期函数的Laplace变换</h2><blockquote>
+<h2 id="二-周期函数的Laplace变换"><a href="#二-周期函数的Laplace变换" class="headerlink" title="二.周期函数的Laplace变换"></a>二.周期函数的Laplace变换</h2><blockquote>
 <p>对于一个以$T$为周期的函数$f\left( t \right)$ ，当$f\left( t \right)$在一个周期上分段连续时，有</p>
 <script type="math/tex; mode=display">\mathscr{L}\left[ f\left( t \right) \right] =\frac{1}{1-e^{-sT}}\int_0^T{f\left( t \right) e^{-st}}dt\ \ \ \ \ \ \text{其中Re}s\left( s \right) >0</script></blockquote>
-<h2 id="Laplace变换性质"><a href="#Laplace变换性质" class="headerlink" title="Laplace变换性质"></a>Laplace变换性质</h2><h3 id="1-线性性质"><a href="#1-线性性质" class="headerlink" title="1.线性性质"></a>1.线性性质</h3><blockquote>
+<h2 id="三-Laplace变换性质"><a href="#三-Laplace变换性质" class="headerlink" title="三.Laplace变换性质"></a>三.Laplace变换性质</h2><h3 id="1-线性性质"><a href="#1-线性性质" class="headerlink" title="1.线性性质"></a>1.线性性质</h3><blockquote>
 <script type="math/tex; mode=display">\mathscr{L}\left[ \alpha f_1\left( t \right) +\beta f_2\left( t \right) \right] =\alpha \mathscr{L}\left[ f_1\left( t \right) \right] +\beta \mathscr{L}\left[ f_2\left( t \right) \right]</script></blockquote>
 <h3 id="2-微分性质"><a href="#2-微分性质" class="headerlink" title="2.微分性质"></a>2.微分性质</h3><blockquote>
 <p>（1）象原函数的微分性质<br>设$\mathscr{L}\left[ f\left( t \right) \right] =F\left( s \right)$</p>
@@ -476,14 +476,14 @@
 <script type="math/tex; mode=display">\underset{t\rightarrow 0}{\lim}f\left( t \right) =\underset{s\rightarrow +\infty}{\lim}sF\left( s \right)</script></blockquote>
 <h3 id="7-中值定理"><a href="#7-中值定理" class="headerlink" title="7.中值定理"></a>7.中值定理</h3><blockquote>
 <script type="math/tex; mode=display">\underset{t\rightarrow +\infty}{\lim}f\left( t \right) =\underset{s\rightarrow 0}{\lim}sF\left( s \right)</script></blockquote>
-<h2 id="Laplace逆变换的求法"><a href="#Laplace逆变换的求法" class="headerlink" title="Laplace逆变换的求法"></a>Laplace逆变换的求法</h2><h3 id="定理1（留数"><a href="#定理1（留数" class="headerlink" title="定理1（留数):"></a>定理1（留数):</h3><blockquote>
+<h2 id="四-Laplace逆变换的求法"><a href="#四-Laplace逆变换的求法" class="headerlink" title="四.Laplace逆变换的求法"></a>四.Laplace逆变换的求法</h2><h3 id="定理1（留数"><a href="#定理1（留数" class="headerlink" title="定理1（留数):"></a>定理1（留数):</h3><blockquote>
 <p>$s_i\left( i=1,2,,,n \right)$是函数$F\left( s \right)$的所有奇点,且当$s\rightarrow \infty$时$,F\left( s \right) \rightarrow 0$,则有</p>
 <script type="math/tex; mode=display">f\left( t \right) =\sum_{k=1}^n{\text{Re}s\left[ F\left( s \right) e^{st},s_k \right]}\ \ \ t>0</script></blockquote>
 <h3 id="定理2（卷积"><a href="#定理2（卷积" class="headerlink" title="定理2（卷积):"></a>定理2（卷积):</h3><blockquote>
 <p>若函数$f_1\left( t \right)$和$f_2\left( t \right)$满足Laplace变换存在定理中的条件,且$\mathscr{L}\left[ f_1\left( t \right) \right] =F_1\left( s \right) \mathscr{L}\left[ f_2\left( t \right) \right] =F_2\left( s \right)$ ,则$f_1\left( t \right) \ast f_2\left( t \right)&gt;$的Laplce变换一定存在，则</p>
 <script type="math/tex; mode=display">\mathscr{L}\left[ f_1\left( t \right) \ast f_2\left( t \right) \right] =\mathscr{L}\left[ f_1\left( t \right) \right] \cdot \mathscr{L}\left[ f_2\left( t \right) \right] =F_1\left( s \right) \cdot F_2\left( s \right)</script><p>这个性质表明两个函数卷积的Laplace变换等于这两个函数Laplace变换乘积</p>
 </blockquote>
-<h3 id="卷积定义："><a href="#卷积定义：" class="headerlink" title="卷积定义："></a>卷积定义：</h3><blockquote>
+<h2 id="五-卷积定义："><a href="#五-卷积定义：" class="headerlink" title="五.卷积定义："></a>五.卷积定义：</h2><blockquote>
 <p>设有两个函数$f_1\left( t \right) ,f_2\left( t \right)$ ,称积分</p>
 <script type="math/tex; mode=display">f_1\left( t \right) \ast f_2\left( t \right) =\int_{-\infty}^{+\infty}{f_1\left( \tau \right) f_2\left( t-\tau \right)}d\tau</script><p>为函数$f_1\left( x \right) ,f_2\left( x \right)$的卷积</p>
 <p>若函数$f_1\left( t \right) ,f_2\left( t \right)$满足：当$t&lt;0$时，$f_1\left( t \right) =f_2\left( t \right) =0$,则有</p>
