@@ -478,10 +478,44 @@
 </code></pre><h2 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h2><h3 id="算法概述-1"><a href="#算法概述-1" class="headerlink" title="算法概述"></a>算法概述</h3><blockquote>
 <p>针对BP算法的大量无用回溯，KMP算法利用已匹配的信息，创建<code>next</code>数组记录<strong>当前匹配位置之前前缀和后缀相同的最长字串长度</strong>，这样一来，对于匹配串<code>S</code>就可以回溯至后缀字串的位置，充分利用首次匹配的信息。</p>
 <p>对于<code>next</code>数组的求解，我先放出代码，然后结合代码具体分析。</p>
-<h3 id="参考代码-1"><a href="#参考代码-1" class="headerlink" title="参考代码"></a>参考代码</h3><p>```<br>void getNext(char <em>T, int </em>next){<br>    int j = -1, i = 0;                   //定义前缀j,后缀i<br>    next[0] = -1;                        //赋初值-1，代表不参与匹配<br>    int T_len = strlen(T);<br>    while(i != T_len){<br>        if(j = -1 || T[i] == T[j]){      //当前缀与后缀相等，则i+1的next数组的值即为j+1<br>            i++;<br>            j++;<br>            next[i] = j;<br>        }<br>        else                             //j回退到前缀匹配的最大长度<br>            j = next[j];<br>    }<br>}</p>
 </blockquote>
-<p>bool KMP(char <em>S, char </em>T, int &amp;index){<br>    int i = 0, j = 0;<br>    int S_len = strlen(S);<br>    int T_len = strlen(T);<br>    int *next;<br>    getNext(T, next);<br>    while(i != S_len || j != T_len){<br>        if(j = -1 || S[i] == T[j]){<br>            i++;<br>            j++;<br>        }<br>        else<br>            j = next[j];<br>    }<br>    if(j = T_len){<br>        index = i - j;<br>        return true;<br>    }<br>    else<br>        return false;<br>}<br>```</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><blockquote>
+<h3 id="参考代码-1"><a href="#参考代码-1" class="headerlink" title="参考代码"></a>参考代码</h3><pre><code>void getNext(char *T, int *next){
+    int j = -1, i = 0;                   //定义前缀j,后缀i
+    next[0] = -1;                        //赋初值-1，代表不参与匹配
+    int T_len = strlen(T);
+    while(i != T_len){
+        if(j = -1 || T[i] == T[j]){      //当前缀与后缀相等，则i+1的next数组的值即为j+1
+            i++;
+            j++;
+            next[i] = j;
+        }
+        else                             //j回退到前缀匹配的最大长度
+            j = next[j];
+    }
+}
+
+bool KMP(char *S, char *T, int &amp;index){
+    int i = 0, j = 0;
+    int S_len = strlen(S);
+    int T_len = strlen(T);
+    int *next;
+    getNext(T, next);
+    while(i != S_len || j != T_len){
+        if(j = -1 || S[i] == T[j]){
+            i++;
+            j++;
+        }
+        else
+            j = next[j];
+    }
+    if(j = T_len){
+        index = i - j;
+        return true;
+    }
+    else
+        return false;
+}
+</code></pre><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><blockquote>
 <p>KMP算法的精华之处在于维护一个<code>next</code>数组,使得匹配串无需多次回溯，当然KMP算法也有很多缺点，下次可以讲讲KMP算法的改进。</p>
 </blockquote>
 <script>
