@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shenhuagg555.gitee.io/"/>
-  <updated>2020-05-19T02:05:58.514Z</updated>
+  <updated>2020-05-20T09:25:57.166Z</updated>
   <id>https://shenhuagg555.gitee.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>字符串匹配算法</title>
+    <link href="https://shenhuagg555.gitee.io/2020/05204714.html"/>
+    <id>https://shenhuagg555.gitee.io/2020/05204714.html</id>
+    <published>2020-05-20T07:30:17.000Z</published>
+    <updated>2020-05-20T09:25:57.166Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;BP暴力搜索&quot;&gt;&lt;a href=&quot;#BP暴力搜索&quot; class=&quot;headerlink&quot; title=&quot;BP暴力搜索&quot;&gt;&lt;/a&gt;BP暴力搜索&lt;/h2&gt;&lt;h3 id=&quot;算法概述&quot;&gt;&lt;a href=&quot;#算法概述&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="BP算法" scheme="https://shenhuagg555.gitee.io/tags/BP%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="KMP算法" scheme="https://shenhuagg555.gitee.io/tags/KMP%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>TwoSum问题</title>
