@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="字符串匹配算法, C/C++，Python，Java等">
+    <meta name="keywords" content="单链表常用操作, C/C++，Python，Java等">
     <meta name="description" content="博主很懒，什么都没有留下">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>字符串匹配算法 | Raúl</title>
+    <title>单链表常用操作 | Raúl</title>
     <link rel="icon" type="image/png" href="/medias/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -293,12 +293,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">字符串匹配算法</h1>
+                    <h1 class="description center-align post-title">单链表常用操作</h1>
                 </div>
             </div>
         </div>
@@ -415,12 +415,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/BP%E7%AE%97%E6%B3%95/">
-                                <span class="chip bg-color">BP算法</span>
+                            <a href="/tags/Data-structure-and-algorithm/">
+                                <span class="chip bg-color">Data structure and algorithm</span>
                             </a>
                         
-                            <a href="/tags/KMP%E7%AE%97%E6%B3%95/">
-                                <span class="chip bg-color">KMP算法</span>
+                            <a href="/tags/%E9%93%BE%E8%A1%A8/">
+                                <span class="chip bg-color">链表</span>
                             </a>
                         
                     </div>
@@ -435,7 +435,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-20
+                    2020-05-31
                 </div>
                 
 
@@ -451,72 +451,137 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="BP暴力搜索"><a href="#BP暴力搜索" class="headerlink" title="BP暴力搜索"></a>BP暴力搜索</h2><h3 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h3><blockquote>
-<p>匹配串<code>S</code>和模式串<code>T</code>从头开始比较即初始化<code>i = 0, j = 0</code>，当<code>S[i] == T[j]</code>时，将两串下标同时右移，反之，则将匹配串<code>S</code>回溯到当前匹配开头的下一位，模式串则回到<code>j = 0</code>。当<code>j = strlen(T)</code>时，匹配成功，当<code>i = strlen(S)</code>，则匹配失败，传入下标<code>index</code>的引用，初始化为<code>-1</code>，匹配成功时，修改为模式串<code>T</code>在匹配串<code>S</code>中的下标。</p>
+                <h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><blockquote>
+<p>如：<code>创建</code>、<code>插入</code>、<code>删除</code>、<code>销毁</code>、<code>打印</code>等。</p>
 </blockquote>
-<h3 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h3><pre><code>bool BP(char *S, char *T, int &amp;index){
-    int i = 0, j = 0;
-    int S_len = strlen(S);
-    int T_len = strlen(T);
-    while(i != S_len || j != T_len){
-        if(S[i] == T[j]){
-            i++;
-            j++;
-        }
-        else{
-            i -= (j-1);
-            j = 0;
-        }
-    }
-    if(j == T_len){
-        index = i - j;
-        return true;
-    }
-    else
-        return false;
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><blockquote>
+<p>对于带有头指针的单链表，在<code>创建</code>、<code>插入</code>、<code>删除</code>、<code>销毁</code>(可能需要修改<code>头指针</code>)时，都需要传入<code>头指针的引用</code>(或<code>头指针的指针</code>)。<br>插入节点时，需要向内存申请一片空间。<br>删除节点时，需要将被删除节点的空间还给内存。<br>销毁链表时，销毁成功后需要将头指针再次置空。</p>
+</blockquote>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>typedef struct ListNode{
+    int data;
+    struct ListNode *next;
+}ListNode;
+
+ListNode* initList(ListNode* &amp;L){             //初始化头指针为NULL
+    L = NULL;
+    return L;
 }
-</code></pre><h2 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h2><h3 id="算法概述-1"><a href="#算法概述-1" class="headerlink" title="算法概述"></a>算法概述</h3><blockquote>
-<p>针对BP算法的大量无用回溯，KMP算法利用已匹配的信息，创建<code>next</code>数组记录<strong>当前匹配位置之前前缀和后缀相同的最长字串长度</strong>，这样一来，对于匹配串<code>S</code>就可以回溯至后缀字串的位置，充分利用首次匹配的信息。</p>
-<p>对于<code>next</code>数组的求解，我先放出代码，然后结合代码具体分析。</p>
-</blockquote>
-<h3 id="参考代码-1"><a href="#参考代码-1" class="headerlink" title="参考代码"></a>参考代码</h3><pre><code>void getNext(char *T, int *next){
-    int j = -1, i = 0;                   //定义前缀j,后缀i
-    next[0] = -1;                        //赋初值-1，代表不参与匹配
-    int T_len = strlen(T);
-    while(i != T_len){
-        if(j = -1 || T[i] == T[j]){      //当前缀与后缀相等，则i+1的next数组的值即为j+1
-            i++;
-            j++;
-            next[i] = j;
+
+int lengthList(ListNode* L){                  //获取单链表的长度
+    int len = 0;
+    ListNode *p = L;;
+    while(p){
+        len++;
+        p = p-&gt;next;
+    }
+    return len;
+}
+
+bool isEmpty(ListNode* L){                    //判断链表是否为空
+    return L == NULL;
+}
+
+ListNode* creatNode(int x){                   //创建一个节点并赋值
+    ListNode * p = new ListNode;
+    p-&gt;next =NULL;
+    p-&gt;data = x;
+    return p;
+}
+
+void deleteNode(ListNode *p){                 //删除一个节点
+    delete p;
+}
+
+ListNode* searchNode(ListNode* L, int k){     //查找某个节点
+    ListNode *p = L;
+    if(isEmpty(L))
+        return NULL;
+    else{
+        int len = lengthList(L);
+        if(k &gt; len || k &lt;= 0)          //不在查找范围内
+            return NULL;
+        else{                          //允许查找
+            int index = 1;
+            while(index != k){
+                index++;
+                p= p-&gt;next;
+            }
+            return p;
         }
-        else                             //j回退到前缀匹配的最大长度
-            j = next[j];
     }
 }
 
-bool KMP(char *S, char *T, int &amp;index){
-    int i = 0, j = 0;
-    int S_len = strlen(S);
-    int T_len = strlen(T);
-    int *next;
-    getNext(T, next);
-    while(i != S_len || j != T_len){
-        if(j = -1 || S[i] == T[j]){
-            i++;
-            j++;
+bool insertNode(ListNode* &amp;L, int k, int x){             //插入一个节点
+    ListNode *p = searchNode(L, k-1);
+    ListNode *t = creatNode(x);
+    if(k == 1){                          //当插入位置在首位时，需要修改头指针，所以这里传的时指针的引用(当然头指针的指针也可)
+        t-&gt;next = L;
+        L = t;
+        return true;
+    }
+    else{
+        if(p != NULL){                  //当可以查询到插入前一位置时(k != 1)，此时先栓新链，再解旧链
+            t-&gt;next = p-&gt;next;
+            p-&gt;next = t;
+            return true;
         }
         else
-            j = next[j];
+            return false;
     }
-    if(j = T_len){
-        index = i - j;
+}
+
+bool removeNode(ListNode* &amp;L, int k, int &amp;x){           //删除一个节点并保存其值
+    ListNode *p = searchNode(L, k-1);
+    if(L != NULL){
+        if(k == 1){                   //当删除首个节点时，需要修改头指针，同样要传头指针的引用
+            x = L-&gt;data;
+            ListNode *t = L;
+            L = L-&gt;next;
+            deleteNode(t);
+            return true;
+        }
+        else{
+            if(p != NULL){                //当可以查询到删除前一位置时，同样拴住新绳，再将旧绳连起来
+                ListNode *t = p-&gt;next;
+                x = t-&gt;data;
+                p-&gt;next = t-&gt;next;
+                deleteNode(t);
+                return true;
+            }
+            else
+                return false;
+        }
+    }
+    else
+        return false;
+}
+
+bool destoryList(ListNode* &amp;L){            //销毁整个单链表
+    if(!isEmpty(L)){
+        ListNode *p = L;
+        ListNode *t = L-&gt;next;
+        while(p){
+            deleteNode(p);
+            p = t;
+            if(t)
+                t = t-&gt;next;
+        }
+        L = NULL;                        //销毁成功后，将头指针再次置空
         return true;
     }
     else
         return false;
 }
+
+void printList(ListNode* L){             //打印单链表
+    ListNode *p = L;
+    while(p){
+        cout &lt;&lt; p-&gt;data &lt;&lt; endl;
+        p = p-&gt;next;
+    }
+}
 </code></pre><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><blockquote>
-<p>KMP算法的精华之处在于维护一个<code>next</code>数组,使得匹配串无需多次回溯，当然KMP算法也有很多缺点，下次可以讲讲KMP算法的改进。</p>
+<p>数据结构怎么说呢，我觉得还是实践出真知吧！越敲你就会发现BUG越多，然后慢慢地你就越来越叼了(坏笑)。<br>链表的原理烂熟于心了，什么栈、队列的链式实现(<strong>阉割版链表</strong>)还不是手到擒来吗？</p>
 </blockquote>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -561,7 +626,7 @@ bool KMP(char *S, char *T, int &amp;index){
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://shenhuagg555.gitee.io/2020/05204714.html">https://shenhuagg555.gitee.io/2020/05204714.html</a>
+                    <a href="https://shenhuagg555.gitee.io/2020/0531fedc.html">https://shenhuagg555.gitee.io/2020/0531fedc.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -599,12 +664,12 @@ bool KMP(char *S, char *T, int &amp;index){
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/BP%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">BP算法</span>
+                                <a href="/tags/Data-structure-and-algorithm/">
+                                    <span class="chip bg-color">Data structure and algorithm</span>
                                 </a>
                             
-                                <a href="/tags/KMP%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">KMP算法</span>
+                                <a href="/tags/%E9%93%BE%E8%A1%A8/">
+                                    <span class="chip bg-color">链表</span>
                                 </a>
                             
                         </div>
@@ -772,9 +837,10 @@ bool KMP(char *S, char *T, int &amp;index){
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/0531fedc.html">
                     <div class="card-image">
@@ -792,9 +858,9 @@ bool KMP(char *S, char *T, int &amp;index){
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-31
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-31
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -803,6 +869,7 @@ bool KMP(char *S, char *T, int &amp;index){
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -825,13 +892,13 @@ bool KMP(char *S, char *T, int &amp;index){
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/0519e8cb.html">
+                <a href="/2020/05204714.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="TwoSum问题">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="字符串匹配算法">
                         
-                        <span class="card-title">TwoSum问题</span>
+                        <span class="card-title">字符串匹配算法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -842,7 +909,7 @@ bool KMP(char *S, char *T, int &amp;index){
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-20
                             </span>
                         <span class="publish-author">
                             
@@ -855,12 +922,12 @@ bool KMP(char *S, char *T, int &amp;index){
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Data-structure-and-algorithm/">
-                        <span class="chip bg-color">Data structure and algorithm</span>
+                    <a href="/tags/BP%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">BP算法</span>
                     </a>
                     
-                    <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/">
-                        <span class="chip bg-color">哈希表</span>
+                    <a href="/tags/KMP%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">KMP算法</span>
                     </a>
                     
                 </div>
