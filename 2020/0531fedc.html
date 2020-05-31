@@ -455,14 +455,17 @@
 <p>如：<code>创建</code>、<code>插入</code>、<code>删除</code>、<code>销毁</code>、<code>打印</code>等。</p>
 </blockquote>
 <h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><blockquote>
-<p>对于带有头指针的单链表，在<code>创建</code>、<code>插入</code>、<code>删除</code>、<code>销毁</code>(可能需要修改<code>头指针</code>)时，都需要传入<code>头指针的引用</code>(或<code>头指针的指针</code>)。<br>插入节点时，需要向内存申请一片空间。<br>删除节点时，需要将被删除节点的空间还给内存。<br>销毁链表时，销毁成功后需要将头指针再次置空。</p>
+<p>对于带有<code>头指针</code>的单链表，在<code>创建</code>、<code>插入</code>、<code>删除</code>、<code>销毁</code>(可能需要修改<code>头指针</code>)时，都需要传入<code>头指针的引用</code>(或<code>头指针的指针</code>)。</p>
+<p><code>插入</code>节点时，需要向<code>内存</code>申请一片<code>空间</code>。</p>
+<p><code>删除</code>节点时，需要将被删除节点的<code>空间</code>还给<code>内存</code>。</p>
+<p><code>销毁</code>链表时，销毁成功后需要将<code>头指针</code>再次<code>置空</code>。</p>
 </blockquote>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>typedef struct ListNode{
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre class=" language-lang-c++"><code class="language-lang-c++">typedef struct ListNode{
     int data;
     struct ListNode *next;
 }ListNode;
 
-ListNode* initList(ListNode* &amp;L){             //初始化头指针为NULL
+ListNode* initList(ListNode* &L){             //初始化头指针为NULL
     L = NULL;
     return L;
 }
@@ -472,7 +475,7 @@ int lengthList(ListNode* L){                  //获取单链表的长度
     ListNode *p = L;;
     while(p){
         len++;
-        p = p-&gt;next;
+        p = p->next;
     }
     return len;
 }
@@ -483,8 +486,8 @@ bool isEmpty(ListNode* L){                    //判断链表是否为空
 
 ListNode* creatNode(int x){                   //创建一个节点并赋值
     ListNode * p = new ListNode;
-    p-&gt;next =NULL;
-    p-&gt;data = x;
+    p->next =NULL;
+    p->data = x;
     return p;
 }
 
@@ -498,31 +501,31 @@ ListNode* searchNode(ListNode* L, int k){     //查找某个节点
         return NULL;
     else{
         int len = lengthList(L);
-        if(k &gt; len || k &lt;= 0)          //不在查找范围内
+        if(k > len || k <= 0)          //不在查找范围内
             return NULL;
         else{                          //允许查找
             int index = 1;
             while(index != k){
                 index++;
-                p= p-&gt;next;
+                p= p->next;
             }
             return p;
         }
     }
 }
 
-bool insertNode(ListNode* &amp;L, int k, int x){             //插入一个节点
+bool insertNode(ListNode* &L, int k, int x){             //插入一个节点
     ListNode *p = searchNode(L, k-1);
     ListNode *t = creatNode(x);
     if(k == 1){                          //当插入位置在首位时，需要修改头指针，所以这里传的时指针的引用(当然头指针的指针也可)
-        t-&gt;next = L;
+        t->next = L;
         L = t;
         return true;
     }
     else{
         if(p != NULL){                  //当可以查询到插入前一位置时(k != 1)，此时先栓新链，再解旧链
-            t-&gt;next = p-&gt;next;
-            p-&gt;next = t;
+            t->next = p->next;
+            p->next = t;
             return true;
         }
         else
@@ -530,21 +533,21 @@ bool insertNode(ListNode* &amp;L, int k, int x){             //插入一个节�
     }
 }
 
-bool removeNode(ListNode* &amp;L, int k, int &amp;x){           //删除一个节点并保存其值
+bool removeNode(ListNode* &L, int k, int &x){           //删除一个节点并保存其值
     ListNode *p = searchNode(L, k-1);
     if(L != NULL){
         if(k == 1){                   //当删除首个节点时，需要修改头指针，同样要传头指针的引用
-            x = L-&gt;data;
+            x = L->data;
             ListNode *t = L;
-            L = L-&gt;next;
+            L = L->next;
             deleteNode(t);
             return true;
         }
         else{
             if(p != NULL){                //当可以查询到删除前一位置时，同样拴住新绳，再将旧绳连起来
-                ListNode *t = p-&gt;next;
-                x = t-&gt;data;
-                p-&gt;next = t-&gt;next;
+                ListNode *t = p->next;
+                x = t->data;
+                p->next = t->next;
                 deleteNode(t);
                 return true;
             }
@@ -556,15 +559,15 @@ bool removeNode(ListNode* &amp;L, int k, int &amp;x){           //删除一个�
         return false;
 }
 
-bool destoryList(ListNode* &amp;L){            //销毁整个单链表
+bool destoryList(ListNode* &L){            //销毁整个单链表
     if(!isEmpty(L)){
         ListNode *p = L;
-        ListNode *t = L-&gt;next;
+        ListNode *t = L->next;
         while(p){
             deleteNode(p);
             p = t;
             if(t)
-                t = t-&gt;next;
+                t = t->next;
         }
         L = NULL;                        //销毁成功后，将头指针再次置空
         return true;
@@ -576,12 +579,14 @@ bool destoryList(ListNode* &amp;L){            //销毁整个单链表
 void printList(ListNode* L){             //打印单链表
     ListNode *p = L;
     while(p){
-        cout &lt;&lt; p-&gt;data &lt;&lt; endl;
-        p = p-&gt;next;
+        cout << p->data << endl;
+        p = p->next;
     }
 }
-</code></pre><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><blockquote>
-<p>数据结构怎么说呢，我觉得还是实践出真知吧！越敲你就会发现BUG越多，然后慢慢地你就越来越叼了(坏笑)。<br>链表的原理烂熟于心了，什么栈、队列的链式实现(<strong>阉割版链表</strong>)还不是手到擒来吗？</p>
+</code></pre>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><blockquote>
+<p><code>数据结构</code>怎么说呢，我觉得还是<code>实践出真知</code>吧！越<code>敲</code>你就会发现<code>BUG</code>越多，然后慢慢地你就越来越<code>叼</code>了(\坏笑)。</p>
+<p><code>链表</code>的原理烂熟于心了，什么<code>栈</code>、<code>队列</code>的链式实现(<code>阉割版链表</code>)还不是手到擒来吗？</p>
 </blockquote>
 <script>
         document.querySelectorAll('.github-emoji')
