@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="BinarySearch, C/C++，Python，Java等">
+    <meta name="keywords" content="排序算法（一）, C/C++，Python，Java等">
     <meta name="description" content="博主很懒，什么都没有留下">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>BinarySearch | Raúl</title>
+    <title>排序算法（一） | Raúl</title>
     <link rel="icon" type="image/png" href="/medias/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -293,12 +293,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">BinarySearch</h1>
+                    <h1 class="description center-align post-title">排序算法（一）</h1>
                 </div>
             </div>
         </div>
@@ -419,10 +419,6 @@
                                 <span class="chip bg-color">Data structure and algorithm</span>
                             </a>
                         
-                            <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
-                                <span class="chip bg-color">二分查找</span>
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -451,41 +447,83 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><blockquote>
-<p>二分查找老生常谈了，有<code>循环</code>的写法，也有<code>递归</code>的写法，随便写写吧。</p>
-</blockquote>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><pre class=" language-lang-c++"><code class="language-lang-c++">int BinarySearch(int arr[], int len, int x){
-    int left = 0;
-    int right = len-1;
-    while(left <= right){
-        int mid = (left + right) / 2;
-        if(x == arr[mid])
-            return mid;
-        else if(x > arr[mid])
-            left = mid + 1;
-        else
-            right = mid - 1;
+                <h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><blockquote>
+<p><code>初始</code> 相邻两元素若左大右小，则交换，每一次都将最大的元素交换至末尾。</p>
+<pre class=" language-lang-c++"><code class="language-lang-c++">void BubbleSort_bas(int arr[], int len){
+    for(int i = 0; i < len; i++){
+        for(int j = 0; j < len - i - 1; j++){
+            if(arr[j] > arr[j+1]){
+                int temp = arr[j+1];
+                arr[j+1] = arr[j];
+                arr[j] = temp;
+            }
+        }
     }
-    return -1;
 }
 </code></pre>
-<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><pre class=" language-lang-c++"><code class="language-lang-c++">int BSearch(int arr[], int L, int R, int x){
-    int mid = (L + R) / 2;
-    if(arr[mid] < x)
-        return BSearch(arr, mid + 1, R, x);
-    else if(arr[mid] > x)
-        return BSearch(arr, L, mid - 1, x);
-    else
-        return mid;
-    return -1;
+<p><code>优化</code> 记录每次交换的最终位置（即后面元素已有序）作为下一次内层扫描的终点，若某次外层扫描发现内层扫描完后并未发生元素交换（即有序）则直接退出。</p>
+<pre class=" language-lang-c++"><code class="language-lang-c++">void BubbleSort_pre(int arr[], int len){
+    for(int i = 0; i < len; i++){
+        int last = len - 1;
+        for(int j = 0; j < len - i - 1; j++){
+            if(arr[j] > arr[j+1]){
+                int temp = arr[j+1];
+                arr[j+1] = arr[j];
+                arr[j] = temp;
+                last = j;
+            }
+        }
+        i = len - last - 1;
+    }
+</code></pre>
+<p>时间复杂度:<code>O(n^2)</code>  空间复杂度:<code>O(1)</code> 稳定性：<code>稳定</code></p>
+</blockquote>
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><blockquote>
+<p>扫描<code>n</code>次,每次将最大的元素放在最后一个位置，然后对前<code>n-1</code>个元素再进行上述操作，直到有序。</p>
+<pre class=" language-lang-c++"><code class="language-lang-c++">  void SelectSort(int arr[], int len){
+    for(int i = 0; i < len; i++){
+        int max = 0;
+        for(int j = 0; j < len - i; j++){
+            if(arr[max] <= arr[j])
+                max = j;
+        }
+        int temp = arr[max];
+        arr[max] = arr[len - i - 1];
+        arr[len - i - 1] = temp;
+    }
 }
 </code></pre>
-<h3 id="一行"><a href="#一行" class="headerlink" title="一行"></a>一行</h3><pre class=" language-lang-c++"><code class="language-lang-c++">int bSearch(int arr[], int L, int R, int x){
-    return arr[L] <= x && arr[R] >= x ? (arr[(L+R)/2] < x ? bSearch(arr, (L+R)/2 + 1, R, x) : (arr[(L+R)/2] > x ? bSearch(arr, L, (L+R)/2 - 1, x) : (L+R)/2)) : -1;
+<p>时间复杂度:<code>O(n^2)</code>  空间复杂度:<code>O(1)</code> 稳定性：<code>稳定</code></p>
+</blockquote>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><blockquote>
+<p><code>初始</code> 对一个需要排序的元素，从后往前遍历，遇到大的则交换位置。</p>
+<pre class=" language-lang-c++"><code class="language-lang-c++">void InsertSort_bas(int arr[], int len){
+    for(int i = 1; i < len; i++){
+        for(int j = i; j > 0 && arr[j] < arr[j - 1]; j--){
+            int temp = arr[j];
+            arr[j] = arr[j - 1];
+            arr[j - 1] = temp;
+        }
+    }
 }
 </code></pre>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><blockquote>
-<p>当然不建议最后一个方法，它的可读性差，没啥鸟用。</p>
+<p><code>优化</code> 对一个需要排序的元素，二分地查找比其大的最小元素位置，将其备份后，比其大的元素向后挪动一位并将其插入到空余位置。</p>
+<pre class=" language-lang-c++"><code class="language-lang-c++">void InsertSort_pre(int arr[], int len){
+    for(int i = 1; i < len; i++){
+        int temp = arr[i], L = 0, R = i - 1, mid = (L + R ) / 2;
+        while(L < R){
+            if(arr[mid] > temp)
+                R = mid;
+            else
+                L = mid + 1;
+        }
+        for(int j = i; j > L; j--)
+            arr[j] = arr[j - 1];
+        arr[L] = temp;
+    }
+}
+</code></pre>
+<p>时间复杂度:<code>O(n^2)</code>  空间复杂度:<code>O(1)</code> 稳定性：原始<code>不稳定</code>可优化为<code>稳定</code></p>
 </blockquote>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -530,7 +568,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://shenhuagg555.gitee.io/2020/06101457.html">https://shenhuagg555.gitee.io/2020/06101457.html</a>
+                    <a href="https://shenhuagg555.gitee.io/2020/0610e8b0.html">https://shenhuagg555.gitee.io/2020/0610e8b0.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -570,10 +608,6 @@
                             
                                 <a href="/tags/Data-structure-and-algorithm/">
                                     <span class="chip bg-color">Data structure and algorithm</span>
-                                </a>
-                            
-                                <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
-                                    <span class="chip bg-color">二分查找</span>
                                 </a>
                             
                         </div>
@@ -741,9 +775,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/0610e8b0.html">
                     <div class="card-image">
@@ -765,9 +800,9 @@ void BubbleSort_bas(int arr[], int len){
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -776,6 +811,7 @@ void BubbleSort_bas(int arr[], int len){
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -794,13 +830,13 @@ void BubbleSort_bas(int arr[], int len){
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/0531fedc.html">
+                <a href="/2020/06101457.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="单链表常用操作">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="BinarySearch">
                         
-                        <span class="card-title">单链表常用操作</span>
+                        <span class="card-title">BinarySearch</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -811,7 +847,7 @@ void BubbleSort_bas(int arr[], int len){
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-10
                             </span>
                         <span class="publish-author">
                             
@@ -828,8 +864,8 @@ void BubbleSort_bas(int arr[], int len){
                         <span class="chip bg-color">Data structure and algorithm</span>
                     </a>
                     
-                    <a href="/tags/%E9%93%BE%E8%A1%A8/">
-                        <span class="chip bg-color">链表</span>
+                    <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
+                        <span class="chip bg-color">二分查找</span>
                     </a>
                     
                 </div>
