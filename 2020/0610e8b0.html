@@ -449,6 +449,7 @@
             <div id="articleContent">
                 <h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><blockquote>
 <p><code>初始</code> 相邻两元素若左大右小，则交换，每一次都将最大的元素交换至末尾。</p>
+</blockquote>
 <pre class=" language-lang-c++"><code class="language-lang-c++">void BubbleSort_bas(int arr[], int len){
     for(int i = 0; i < len; i++){
         for(int j = 0; j < len - i - 1; j++){
@@ -461,7 +462,9 @@
     }
 }
 </code></pre>
+<blockquote>
 <p><code>优化</code> 记录每次交换的最终位置（即后面元素已有序）作为下一次内层扫描的终点，若某次外层扫描发现内层扫描完后并未发生元素交换（即有序）则直接退出。</p>
+</blockquote>
 <pre class=" language-lang-c++"><code class="language-lang-c++">void BubbleSort_pre(int arr[], int len){
     for(int i = 0; i < len; i++){
         int last = len - 1;
@@ -476,10 +479,12 @@
         i = len - last - 1;
     }
 </code></pre>
+<blockquote>
 <p>时间复杂度:<code>O(n^2)</code>  空间复杂度:<code>O(1)</code> 稳定性：<code>稳定</code></p>
 </blockquote>
 <h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><blockquote>
 <p>扫描<code>n</code>次,每次将最大的元素放在最后一个位置，然后对前<code>n-1</code>个元素再进行上述操作，直到有序。</p>
+</blockquote>
 <pre class=" language-lang-c++"><code class="language-lang-c++">  void SelectSort(int arr[], int len){
     for(int i = 0; i < len; i++){
         int max = 0;
@@ -493,10 +498,12 @@
     }
 }
 </code></pre>
+<blockquote>
 <p>时间复杂度:<code>O(n^2)</code>  空间复杂度:<code>O(1)</code> 稳定性：<code>稳定</code></p>
 </blockquote>
 <h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><blockquote>
 <p><code>初始</code> 对一个需要排序的元素，从后往前遍历，遇到大的则交换位置。</p>
+</blockquote>
 <pre class=" language-lang-c++"><code class="language-lang-c++">void InsertSort_bas(int arr[], int len){
     for(int i = 1; i < len; i++){
         for(int j = i; j > 0 && arr[j] < arr[j - 1]; j--){
@@ -507,7 +514,9 @@
     }
 }
 </code></pre>
+<blockquote>
 <p><code>优化</code> 对一个需要排序的元素，二分地查找比其大的最小元素位置，将其备份后，比其大的元素向后挪动一位并将其插入到空余位置。</p>
+</blockquote>
 <pre class=" language-lang-c++"><code class="language-lang-c++">void InsertSort_pre(int arr[], int len){
     for(int i = 1; i < len; i++){
         int temp = arr[i], L = 0, R = i - 1, mid = (L + R ) / 2;
@@ -523,6 +532,7 @@
     }
 }
 </code></pre>
+<blockquote>
 <p>时间复杂度:<code>O(n^2)</code>  空间复杂度:<code>O(1)</code> 稳定性：原始<code>不稳定</code>可优化为<code>稳定</code></p>
 </blockquote>
 <script>
@@ -794,9 +804,10 @@
                         
                             冒泡排序
 初始 相邻两元素若左大右小，则交换，每一次都将最大的元素交换至末尾。
+
 void BubbleSort_bas(int arr[], int len){
     for(int i = 0; i < len; i++){
-     
+    
                         
                     </div>
                     <div class="publish-info">
