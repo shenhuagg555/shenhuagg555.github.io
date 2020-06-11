@@ -535,6 +535,67 @@
 <blockquote>
 <p>时间复杂度:<code>O(n^2)</code>  空间复杂度:<code>O(1)</code> 稳定性：原始<code>不稳定</code>可优化为<code>稳定</code></p>
 </blockquote>
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><blockquote>
+<p><code>分治</code>思想的经典例子</p>
+<p>1.<code>分</code>：将待排序的序列，一分为二，分别对两部分进行归并排序;</p>
+<p>2.<code>并</code>：将最小的序列与其相邻最近的序列合并为有序序列。</p>
+</blockquote>
+<pre class=" language-lang-c++"><code class="language-lang-c++">void Merge(int arr[], int left, int mid, int right, int temp[]){
+    int i = left, j = mid + 1, start = 0;
+    while(i <= mid && j <= right){
+        if(arr[i] < arr[j])
+            temp[start++] = arr[i++];
+        else
+            temp[start++] = arr[j++];
+    }
+    while(i <= mid)
+        temp[start++] = arr[i++];
+    while(j <= right)
+        temp[start++] = arr[j++];
+    for(int k = 0; k < right - left + 1; k++)
+        arr[left + k]  = temp[k];
+}
+
+void MergeSort(int arr[], int left, int right, int temp[]){
+    if(right > left){
+        int mid = left + (right - left) / 2;
+        MergeSort(arr, left, mid, temp);
+        MergeSort(arr, mid + 1, right, temp);
+        Merge(arr, left, mid, right, temp);
+    }
+}
+</code></pre>
+<blockquote>
+<p>时间复杂度：$O(nlog_{2}n)$ 空间复杂度：$O(n)$  稳定性：<code>稳定</code></p>
+</blockquote>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><blockquote>
+<p>选定一个参考基准，定义前后两个指针，先从尾指针开始从后往前扫描，遇到比基准小的则交换前后指针所指元素地位置，最终基准会将整个序列划分为前一部分为比它小后一部分比它大，再分别对两部分进行快速排序。</p>
+</blockquote>
+<pre class=" language-lang-c++"><code class="language-lang-c++">void Swap(int &a, int &b){
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+void QuickSort(int arr[], int left, int right){
+    if(left >= right)
+        return;
+    int i = left, j = right, temp = arr[left];
+    while(i != j){
+        while(i < j && arr[j] >= temp)
+            --j;
+        Swap(arr[j], arr[i]);
+        while(i < j && arr[i] <= temp)
+            ++i;
+        Swap(arr[j], arr[i]);
+    }
+    QuickSort(arr, left, i-1);
+    QuickSort(arr, i+1, right);
+}
+</code></pre>
+<blockquote>
+<p>时间复杂度：$O(log_{2}n)$ 空间复杂度：$O(log_{2}n)$ 稳定性：<code>不稳定</code></p>
+</blockquote>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -802,12 +863,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            冒泡排序
-初始 相邻两元素若左大右小，则交换，每一次都将最大的元素交换至末尾。
-
-void BubbleSort_bas(int arr[], int len){
-    for(int i = 0; i < len; i++){
-    
+                             
                         
                     </div>
                     <div class="publish-info">
