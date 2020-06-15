@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://shenhuagg555.gitee.io/"/>
-  <updated>2020-06-11T07:19:57.381Z</updated>
+  <updated>2020-06-15T09:24:19.957Z</updated>
   <id>https://shenhuagg555.gitee.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>BinaryTree</title>
+    <link href="https://shenhuagg555.gitee.io/2020/0615665a.html"/>
+    <id>https://shenhuagg555.gitee.io/2020/0615665a.html</id>
+    <published>2020-06-15T09:16:33.000Z</published>
+    <updated>2020-06-15T09:24:19.957Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;二叉节点的创建&quot;&gt;&lt;a href=&quot;#二叉节点的创建&quot; class=&quot;headerlink&quot; title=&quot;二叉节点的创建&quot;&gt;&lt;/a&gt;二叉节点的创建&lt;/h2&gt;&lt;pre class=&quot; language-lang-c++&quot;&gt;&lt;code
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Data structure and algorithm" scheme="https://shenhuagg555.gitee.io/tags/Data-structure-and-algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>排序算法（一）</title>

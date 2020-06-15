@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="排序算法（一）, C/C++，Python，Java等">
+    <meta name="keywords" content="BinaryTree, C/C++，Python，Java等">
     <meta name="description" content="博主很懒，什么都没有留下">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>排序算法（一） | Raúl</title>
+    <title>BinaryTree | Raúl</title>
     <link rel="icon" type="image/png" href="/medias/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -293,12 +293,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">排序算法（一）</h1>
+                    <h1 class="description center-align post-title">BinaryTree</h1>
                 </div>
             </div>
         </div>
@@ -431,7 +431,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-06-10
+                    2020-06-15
                 </div>
                 
 
@@ -447,155 +447,120 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><blockquote>
-<p><code>初始</code> 相邻两元素若左大右小，则交换，每一次都将最大的元素交换至末尾。</p>
-</blockquote>
-<pre class=" language-lang-c++"><code class="language-lang-c++">void BubbleSort_bas(int arr[], int len){
-    for(int i = 0; i < len; i++){
-        for(int j = 0; j < len - i - 1; j++){
-            if(arr[j] > arr[j+1]){
-                int temp = arr[j+1];
-                arr[j+1] = arr[j];
-                arr[j] = temp;
-            }
-        }
+                <h2 id="二叉节点的创建"><a href="#二叉节点的创建" class="headerlink" title="二叉节点的创建"></a>二叉节点的创建</h2><pre class=" language-lang-c++"><code class="language-lang-c++">struct BinNode{
+    int val;
+    struct BinNode *left, *right;
+    BinNode(int x){              //直接一个有参构造方法方便节点创建
+        val = x;
+        left = right = NULL;
+    }
+};
+</code></pre>
+<h2 id="二叉树的创建"><a href="#二叉树的创建" class="headerlink" title="二叉树的创建"></a>二叉树的创建</h2><pre class=" language-lang-c++"><code class="language-lang-c++">void creatTree(BinNode* &root){    //整树建立
+    /*
+    int val = 0;                    //静态建树
+    cin >> val;
+    if(val <= 0){                   //若输入非正则建立空节点
+        root == NULL;
+        return ;
+    }
+    else{                          //输入为正，则创建新节点
+        root = new BinNode(val);
+        creatTree(root->left);    //递归建立左右子树
+        creatTree(root->right);
+    }
+    */
+   root = new BinNode(1);           //动态建树
+}
+</code></pre>
+<h2 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h2><pre class=" language-lang-c++"><code class="language-lang-c++">void preOrder(BinNode *root){       //前序遍历
+    if(root){
+        cout << root->val << endl;
+        preOrder(root->left);
+        preOrder(root->right);
     }
 }
 </code></pre>
-<blockquote>
-<p><code>优化</code> 记录每次交换的最终位置（即后面元素已有序）作为下一次内层扫描的终点，若某次外层扫描发现内层扫描完后并未发生元素交换（即有序）则直接退出。</p>
-</blockquote>
-<pre class=" language-lang-c++"><code class="language-lang-c++">void BubbleSort_pre(int arr[], int len){
-    for(int i = 0; i < len; i++){
-        int last = len - 1;
-        for(int j = 0; j < len - i - 1; j++){
-            if(arr[j] > arr[j+1]){
-                int temp = arr[j+1];
-                arr[j+1] = arr[j];
-                arr[j] = temp;
-                last = j;
-            }
-        }
-        i = len - last - 1;
-    }
-</code></pre>
-<blockquote>
-<p>时间复杂度:<code>O(n^2)</code>  空间复杂度:<code>O(1)</code> 稳定性：<code>稳定</code></p>
-</blockquote>
-<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><blockquote>
-<p>扫描<code>n</code>次,每次将最大的元素放在最后一个位置，然后对前<code>n-1</code>个元素再进行上述操作，直到有序。</p>
-</blockquote>
-<pre class=" language-lang-c++"><code class="language-lang-c++">  void SelectSort(int arr[], int len){
-    for(int i = 0; i < len; i++){
-        int max = 0;
-        for(int j = 0; j < len - i; j++){
-            if(arr[max] <= arr[j])
-                max = j;
-        }
-        int temp = arr[max];
-        arr[max] = arr[len - i - 1];
-        arr[len - i - 1] = temp;
+<h2 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h2><pre class=" language-lang-c++"><code class="language-lang-c++">void inOrder(BinNode *root){        //中序遍历
+    if(root){
+        inOrder(root->left);
+        cout << root->val << endl;
+        inOrder(root->right);
     }
 }
 </code></pre>
-<blockquote>
-<p>时间复杂度:<code>O(n^2)</code>  空间复杂度:<code>O(1)</code> 稳定性：<code>稳定</code></p>
-</blockquote>
-<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><blockquote>
-<p><code>初始</code> 对一个需要排序的元素，从后往前遍历，遇到大的则交换位置。</p>
-</blockquote>
-<pre class=" language-lang-c++"><code class="language-lang-c++">void InsertSort_bas(int arr[], int len){
-    for(int i = 1; i < len; i++){
-        for(int j = i; j > 0 && arr[j] < arr[j - 1]; j--){
-            int temp = arr[j];
-            arr[j] = arr[j - 1];
-            arr[j - 1] = temp;
-        }
+<h2 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h2><pre class=" language-lang-c++"><code class="language-lang-c++">void postOrder(BinNode *root){       //后序遍历
+    if(root){
+        postOrder(root->left);
+        postOrder(root->right);
+        cout << root->val << endl;
     }
 }
 </code></pre>
-<blockquote>
-<p><code>优化</code> 对一个需要排序的元素，二分地查找比其大的最小元素位置，将其备份后，比其大的元素向后挪动一位并将其插入到空余位置。</p>
-</blockquote>
-<pre class=" language-lang-c++"><code class="language-lang-c++">void InsertSort_pre(int arr[], int len){
-    for(int i = 1; i < len; i++){
-        int temp = arr[i], L = 0, R = i - 1, mid = (L + R ) / 2;
-        while(L < R){
-            if(arr[mid] > temp)
-                R = mid;
-            else
-                L = mid + 1;
-        }
-        for(int j = i; j > L; j--)
-            arr[j] = arr[j - 1];
-        arr[L] = temp;
+<h2 id="二叉树的深度"><a href="#二叉树的深度" class="headerlink" title="二叉树的深度"></a>二叉树的深度</h2><pre class=" language-lang-c++"><code class="language-lang-c++">int getDepth(BinNode *root){          //获取树的深度
+    if(root){
+        int leftdepth = getDepth(root->left);
+        int rightdepth = getDepth(root->right);
+        return leftdepth > rightdepth ? leftdepth + 1 : rightdepth + 1;   //比较左右子树的深度再加上此节点
     }
+    else
+        return 0;            //若为空节点则返回0，相当于没有增加树的深度
 }
 </code></pre>
-<blockquote>
-<p>时间复杂度:<code>O(n^2)</code>  空间复杂度:<code>O(1)</code> 稳定性：原始<code>不稳定</code>可优化为<code>稳定</code></p>
-</blockquote>
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><blockquote>
-<p><code>分治</code>思想的经典例子</p>
-<p>1.<code>分</code>：将待排序的序列，一分为二，分别对两部分进行归并排序;</p>
-<p>2.<code>并</code>：将最小的序列与其相邻最近的序列合并为有序序列。</p>
-</blockquote>
-<pre class=" language-lang-c++"><code class="language-lang-c++">void Merge(int arr[], int left, int mid, int right, int temp[]){
-    int i = left, j = mid + 1, start = 0;
-    while(i <= mid && j <= right){
-        if(arr[i] < arr[j])
-            temp[start++] = arr[i++];
+<h2 id="统计叶子节点数"><a href="#统计叶子节点数" class="headerlink" title="统计叶子节点数"></a>统计叶子节点数</h2><pre class=" language-lang-c++"><code class="language-lang-c++">int leafCount(BinNode *root){            //统计叶子节点
+    if(root){
+        if(root->left == NULL && root->right == NULL)        //若节点的左右子树均为空，则返回1(即自身为叶子节点)
+            return 1;
         else
-            temp[start++] = arr[j++];
+            return leafCount(root->left) + leafCount(root->right);   //若节点左右子树不全为空，则返回左右子树的叶子节点书之和
     }
-    while(i <= mid)
-        temp[start++] = arr[i++];
-    while(j <= right)
-        temp[start++] = arr[j++];
-    for(int k = 0; k < right - left + 1; k++)
-        arr[left + k]  = temp[k];
+    else
+        return 0;        //返回0表示对叶子节点个数贡献为0
 }
-
-void MergeSort(int arr[], int left, int right, int temp[]){
-    if(right > left){
-        int mid = left + (right - left) / 2;
-        MergeSort(arr, left, mid, temp);
-        MergeSort(arr, mid + 1, right, temp);
-        Merge(arr, left, mid, right, temp);
+</code></pre>
+<h2 id="统计节点数"><a href="#统计节点数" class="headerlink" title="统计节点数"></a>统计节点数</h2><pre class=" language-lang-c++"><code class="language-lang-c++">int nodeCount(BinNode *root){           //统计节点个书
+    if(root)
+        return nodeCount(root->left) + nodeCount(root->right) + 1;        //返回左右子树节点数之和再加此节点
+    else
+        return 0;   //返回0表示对节点个数贡献为0
+}
+</code></pre>
+<h2 id="搜索节点"><a href="#搜索节点" class="headerlink" title="搜索节点"></a>搜索节点</h2><pre class=" language-lang-c++"><code class="language-lang-c++">BinNode *searchNode(BinNode *root, int val){          //查找节点
+    if(root == NULL)        //空节点直接返回NULL，（或代表节点未找到）
+        return NULL;
+    if(root->val == val){   //找到目标节点，返回其地址
+        return root;
+    }
+    BinNode *p = searchNode(root->left, val);        //前面的程序没有找到，则查找该节点的左子节点，若为空则继续查找右子节点
+    return p ? p : searchNode(root->right, val);
+}
+</code></pre>
+<h2 id="插入节点"><a href="#插入节点" class="headerlink" title="插入节点"></a>插入节点</h2><pre class=" language-lang-c++"><code class="language-lang-c++">bool insertNode(BinNode *root, int val, char LR, int x){   //插入节点(不牵扯递归，都可以看懂)
+    BinNode *p = searchNode(root, val);
+    if(p == NULL)
+        return false;
+    if(LR == 'L'){
+        if(p->left != NULL)
+            return false;
+        p->left = new BinNode(x);
+    }
+    else{
+        if(p->right != NULL)
+            return false;
+        p->right = new BinNode(x);
+    }
+    return true;
+}
+</code></pre>
+<h2 id="二叉树的删除"><a href="#二叉树的删除" class="headerlink" title="二叉树的删除"></a>二叉树的删除</h2><pre class=" language-lang-c++"><code class="language-lang-c++">void clearTree(BinNode* &root){           //整树删除
+    if(root){                      //若节点不为空，则依次删除其左右子树
+        clearTree(root->left);
+        clearTree(root->right);
+        delete root;            //调用delete 删除节点
+        root = NULL;           //记得将被删除节点的指针指向NULL，否则将变为“野指针”
     }
 }
 </code></pre>
-<blockquote>
-<p>时间复杂度：$O(nlog_{2}n)$ 空间复杂度：$O(n)$  稳定性：<code>稳定</code></p>
-</blockquote>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><blockquote>
-<p>选定一个参考基准，定义前后两个指针，先从尾指针开始从后往前扫描，遇到比基准小的则交换前后指针所指元素地位置，最终基准会将整个序列划分为前一部分为比它小后一部分比它大，再分别对两部分进行快速排序。</p>
-</blockquote>
-<pre class=" language-lang-c++"><code class="language-lang-c++">void Swap(int &a, int &b){
-    int temp = a;
-    a = b;
-    b = temp;
-}
-
-void QuickSort(int arr[], int left, int right){
-    if(left >= right)
-        return;
-    int i = left, j = right, temp = arr[left];
-    while(i != j){
-        while(i < j && arr[j] >= temp)
-            --j;
-        Swap(arr[j], arr[i]);
-        while(i < j && arr[i] <= temp)
-            ++i;
-        Swap(arr[j], arr[i]);
-    }
-    QuickSort(arr, left, i-1);
-    QuickSort(arr, i+1, right);
-}
-</code></pre>
-<blockquote>
-<p>时间复杂度：$O(log_{2}n)$ 空间复杂度：$O(log_{2}n)$ 稳定性：<code>不稳定</code></p>
-</blockquote>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -639,7 +604,7 @@ void QuickSort(int arr[], int left, int right){
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://shenhuagg555.gitee.io/2020/0610e8b0.html">https://shenhuagg555.gitee.io/2020/0610e8b0.html</a>
+                    <a href="https://shenhuagg555.gitee.io/2020/0615665a.html">https://shenhuagg555.gitee.io/2020/0615665a.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -846,9 +811,10 @@ void QuickSort(int arr[], int left, int right){
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/0615665a.html">
                     <div class="card-image">
@@ -866,9 +832,9 @@ void QuickSort(int arr[], int left, int right){
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -877,6 +843,7 @@ void QuickSort(int arr[], int left, int right){
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -895,13 +862,13 @@ void QuickSort(int arr[], int left, int right){
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06101457.html">
+                <a href="/2020/0610e8b0.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="BinarySearch">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="排序算法（一）">
                         
-                        <span class="card-title">BinarySearch</span>
+                        <span class="card-title">排序算法（一）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -927,10 +894,6 @@ void QuickSort(int arr[], int left, int right){
                     
                     <a href="/tags/Data-structure-and-algorithm/">
                         <span class="chip bg-color">Data structure and algorithm</span>
-                    </a>
-                    
-                    <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
-                        <span class="chip bg-color">二分查找</span>
                     </a>
                     
                 </div>
