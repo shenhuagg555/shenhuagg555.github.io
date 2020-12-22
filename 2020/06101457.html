@@ -453,7 +453,21 @@
                 <h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><blockquote>
 <p>二分查找老生常谈了，有<code>循环</code>的写法，也有<code>递归</code>的写法，随便写写吧。</p>
 </blockquote>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><p>int BinarySearch(int arr[], int len, int x){<br>    int left = 0;<br>    int right = len-1;<br>    while(left &lt;= right){<br>        int mid = (left + right) / 2;<br>        if(x == arr[mid])<br>            return mid;<br>        else if(x &gt; arr[mid])<br>            left = mid + 1;<br>        else<br>            right = mid - 1;<br>    }<br>    return -1;<br>}</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><pre class=" language-lang-c++"><code class="language-lang-c++">int BinarySearch(int arr[], int len, int x){
+    int left = 0;
+    int right = len-1;
+    while(left <= right){
+        int mid = (left + right) / 2;
+        if(x == arr[mid])
+            return mid;
+        else if(x > arr[mid])
+            left = mid + 1;
+        else
+            right = mid - 1;
+    }
+    return -1;
+}
+</code></pre>
 <h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><pre class=" language-lang-c++"><code class="language-lang-c++">int BSearch(int arr[], int L, int R, int x){
     int mid = (L + R) / 2;
     if(arr[mid] < x)
