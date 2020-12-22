@@ -34,9 +34,11 @@
 }
 
 body {
-    background-color: #eaeaea;
+    /*background-color: #eaeaea;*/
+    background: linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%);
+    background-attachment: fixed;
     margin: 0;
-    color: #34495e;
+    color: #7F95D1;
 }
 
 h1 {
