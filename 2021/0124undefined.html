@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="BinaryTree, C/C++，Python，Java等">
+    <meta name="keywords" content="链表交错重排, C/C++，Python，Java等">
     <meta name="description" content="博主很懒，什么都没有留下">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>BinaryTree | Raúl</title>
+    <title>链表交错重排 | Raúl</title>
     <link rel="icon" type="image/png" href="/medias/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -292,12 +292,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">BinaryTree</h1>
+                    <h1 class="description center-align post-title">链表交错重排</h1>
                 </div>
             </div>
         </div>
@@ -418,6 +418,10 @@
                                 <span class="chip bg-color">Data structure and algorithm</span>
                             </a>
                         
+                            <a href="/tags/%E9%93%BE%E8%A1%A8/">
+                                <span class="chip bg-color">链表</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -430,7 +434,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-06-15
+                    2021-01-24
                 </div>
                 
 
@@ -446,118 +450,66 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="二叉节点的创建"><a href="#二叉节点的创建" class="headerlink" title="二叉节点的创建"></a>二叉节点的创建</h2><pre class=" language-lang-c++"><code class="language-lang-c++">struct BinNode{
-    int val;
-    struct BinNode *left, *right;
-    BinNode(int x){              //直接一个有参构造方法方便节点创建
-        val = x;
-        left = right = NULL;
-    }
-};
+                <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><blockquote>
+<p>设线性表$L=(a_1,a_2,a_3,…a_n)$采用带头结点的单链表保存，请设计一个空间复杂度为$O(1)$且时间上尽可能高效的算法，<br>重新排列L中的各结点，得到线性表$L’=(a_1,a_n,a_2,a_{n-1},a_3,a_n-2,…)$</p>
+</blockquote>
+<h2 id="单链表结点的定义如下"><a href="#单链表结点的定义如下" class="headerlink" title="单链表结点的定义如下"></a>单链表结点的定义如下</h2><pre class=" language-lang-c"><code class="language-lang-c">typedef struct Node{
+    int data;
+    struct Node *next;
+}Node;
 </code></pre>
-<h2 id="二叉树的创建"><a href="#二叉树的创建" class="headerlink" title="二叉树的创建"></a>二叉树的创建</h2><pre class=" language-lang-c++"><code class="language-lang-c++">void creatTree(BinNode* &root){    //整树建立
-    /*
-    int val = 0;                    //静态建树
-    cin >> val;
-    if(val <= 0){                   //若输入非正则建立空节点
-        root == NULL;
-        return ;
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><blockquote>
+<p>先将单链表分为前后等长两段，后半段就地逆置，然后将后半段插入前半段即可。</p>
+</blockquote>
+<h2 id="步骤拆分"><a href="#步骤拆分" class="headerlink" title="步骤拆分"></a>步骤拆分</h2><blockquote>
+<p>1.找到中间节点<br>2.后半段链表就地逆置<br>3.链表交替合并</p>
+</blockquote>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><blockquote>
+<p>1.寻找中间结点</p>
+</blockquote>
+<pre class=" language-lang-c"><code class="language-lang-c">Node *findMid(Node *h){
+    Node *p = h;
+    while(h && h->next){
+        h = h->next->next;
+        p = p->next;
     }
-    else{                          //输入为正，则创建新节点
-        root = new BinNode(val);
-        creatTree(root->left);    //递归建立左右子树
-        creatTree(root->right);
-    }
-    */
-   root = new BinNode(1);           //动态建树
+    return p;
 }
 </code></pre>
-<h2 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h2><pre class=" language-lang-c++"><code class="language-lang-c++">void preOrder(BinNode *root){       //前序遍历
-    if(root){
-        cout << root->val << endl;
-        preOrder(root->left);
-        preOrder(root->right);
+<blockquote>
+<p>2.链表逆置</p>
+</blockquote>
+<pre class=" language-lang-c"><code class="language-lang-c">Node *reverse(Node *h){
+    Node *head = (Node *)malloc(sizeof (Node));
+    head->next = NULL;
+    while (h){
+        Node *p = h->next;
+        h->next = head->next;
+        head->next = h;
+        h = p;
     }
+    return head->next;
 }
 </code></pre>
-<h2 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h2><pre class=" language-lang-c++"><code class="language-lang-c++">void inOrder(BinNode *root){        //中序遍历
-    if(root){
-        inOrder(root->left);
-        cout << root->val << endl;
-        inOrder(root->right);
+<blockquote>
+<p>3.链表交错合并</p>
+</blockquote>
+<pre class=" language-lang-c"><code class="language-lang-c">Node *example_2019(Node *h){
+    Node *head = h;
+    Node *p = findMid(h);
+    p = reverse(p);
+    Node *tail = NULL;
+    while(p){
+        Node *p1 = h->next;
+        Node *p2 = p->next;
+        p->next = h->next;
+        h->next = p;
+        tail = p;
+        p = p2;
+        h = p1;
     }
-}
-</code></pre>
-<h2 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h2><pre class=" language-lang-c++"><code class="language-lang-c++">void postOrder(BinNode *root){       //后序遍历
-    if(root){
-        postOrder(root->left);
-        postOrder(root->right);
-        cout << root->val << endl;
-    }
-}
-</code></pre>
-<h2 id="二叉树的深度"><a href="#二叉树的深度" class="headerlink" title="二叉树的深度"></a>二叉树的深度</h2><pre class=" language-lang-c++"><code class="language-lang-c++">int getDepth(BinNode *root){          //获取树的深度
-    if(root){
-        int leftdepth = getDepth(root->left);
-        int rightdepth = getDepth(root->right);
-        return leftdepth > rightdepth ? leftdepth + 1 : rightdepth + 1;   //比较左右子树的深度再加上此节点
-    }
-    else
-        return 0;            //若为空节点则返回0，相当于没有增加树的深度
-}
-</code></pre>
-<h2 id="统计叶子节点数"><a href="#统计叶子节点数" class="headerlink" title="统计叶子节点数"></a>统计叶子节点数</h2><pre class=" language-lang-c++"><code class="language-lang-c++">int leafCount(BinNode *root){            //统计叶子节点
-    if(root){
-        if(root->left == NULL && root->right == NULL)        //若节点的左右子树均为空，则返回1(即自身为叶子节点)
-            return 1;
-        else
-            return leafCount(root->left) + leafCount(root->right);   //若节点左右子树不全为空，则返回左右子树的叶子节点书之和
-    }
-    else
-        return 0;        //返回0表示对叶子节点个数贡献为0
-}
-</code></pre>
-<h2 id="统计节点数"><a href="#统计节点数" class="headerlink" title="统计节点数"></a>统计节点数</h2><pre class=" language-lang-c++"><code class="language-lang-c++">int nodeCount(BinNode *root){           //统计节点个书
-    if(root)
-        return nodeCount(root->left) + nodeCount(root->right) + 1;        //返回左右子树节点数之和再加此节点
-    else
-        return 0;   //返回0表示对节点个数贡献为0
-}
-</code></pre>
-<h2 id="搜索节点"><a href="#搜索节点" class="headerlink" title="搜索节点"></a>搜索节点</h2><pre class=" language-lang-c++"><code class="language-lang-c++">BinNode *searchNode(BinNode *root, int val){          //查找节点
-    if(root == NULL)        //空节点直接返回NULL，（或代表节点未找到）
-        return NULL;
-    if(root->val == val){   //找到目标节点，返回其地址
-        return root;
-    }
-    BinNode *p = searchNode(root->left, val);        //前面的程序没有找到，则查找该节点的左子节点，若为空则继续查找右子节点
-    return p ? p : searchNode(root->right, val);
-}
-</code></pre>
-<h2 id="插入节点"><a href="#插入节点" class="headerlink" title="插入节点"></a>插入节点</h2><pre class=" language-lang-c++"><code class="language-lang-c++">bool insertNode(BinNode *root, int val, char LR, int x){   //插入节点(不牵扯递归，都可以看懂)
-    BinNode *p = searchNode(root, val);
-    if(p == NULL)
-        return false;
-    if(LR == 'L'){
-        if(p->left != NULL)
-            return false;
-        p->left = new BinNode(x);
-    }
-    else{
-        if(p->right != NULL)
-            return false;
-        p->right = new BinNode(x);
-    }
-    return true;
-}
-</code></pre>
-<h2 id="二叉树的删除"><a href="#二叉树的删除" class="headerlink" title="二叉树的删除"></a>二叉树的删除</h2><pre class=" language-lang-c++"><code class="language-lang-c++">void clearTree(BinNode* &root){           //整树删除
-    if(root){                      //若节点不为空，则依次删除其左右子树
-        clearTree(root->left);
-        clearTree(root->right);
-        delete root;            //调用delete 删除节点
-        root = NULL;           //记得将被删除节点的指针指向NULL，否则将变为“野指针”
-    }
+    tail->next = NULL;
+    return head;
 }
 </code></pre>
 
@@ -585,7 +537,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://shenhuagg555.gitee.io/2020/0615665a.html">https://shenhuagg555.gitee.io/2020/0615665a.html</a>
+                    <a href="https://shenhuagg555.gitee.io/2021/0124undefined.html">https://shenhuagg555.gitee.io/2021/0124undefined.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -625,6 +577,10 @@
                             
                                 <a href="/tags/Data-structure-and-algorithm/">
                                     <span class="chip bg-color">Data structure and algorithm</span>
+                                </a>
+                            
+                                <a href="/tags/%E9%93%BE%E8%A1%A8/">
+                                    <span class="chip bg-color">链表</span>
                                 </a>
                             
                         </div>
@@ -792,9 +748,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/0124undefined.html">
                     <div class="card-image">
@@ -812,9 +769,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-01-24
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-24
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -823,6 +780,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -845,13 +803,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/0610e8b0.html">
+                <a href="/2020/0615665a.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="排序算法（一）">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="BinaryTree">
                         
-                        <span class="card-title">排序算法（一）</span>
+                        <span class="card-title">BinaryTree</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -862,7 +820,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-15
                             </span>
                         <span class="publish-author">
                             
@@ -1014,6 +972,13 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 </main>
 
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 
